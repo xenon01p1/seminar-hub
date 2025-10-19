@@ -1,4 +1,4 @@
-export default function FormInput({ title, name, type, placeholder, defaultValue, isRequired = true }) {
+export default function FormInput({ title, name, type, placeholder, defaultValue = null, isRequired = true, onChangeHandler = () => {} }) {
     return (
         <div>
           <label
@@ -16,6 +16,7 @@ export default function FormInput({ title, name, type, placeholder, defaultValue
               autoComplete="off"
               required={ isRequired } 
               defaultValue={ defaultValue }
+              onChange={ onChangeHandler }
               className="
                 appearance-none block w-full px-4 py-2 
                 border-none 

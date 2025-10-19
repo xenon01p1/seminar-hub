@@ -210,10 +210,7 @@ const Footer = () => (
   </footer>
 );
 
-
-// --- Main App Component ---
-
-const App = () => {
+const UserDashboard = () => {
   return (
     <div className="min-h-screen antialiased font-sans">
       <HeroSection />
@@ -225,4 +222,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default UserDashboard;
