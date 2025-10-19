@@ -1,36 +1,60 @@
 import React, { useState } from 'react';
 import FormInput from '../../components/formInput';
-import { Lock, Mail, Twitter, User } from 'lucide-react'; 
+import { useNavigate } from 'react-router-dom';
+import { registerUser } from '../../api/authUser';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 // --- Mock Components/Functions (for runnable example) ---
-const LinkRegister = () => (
+const LinkLogin = () => (
     <a href="#" className="mt-2 text-sm font-medium text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out">
-        Don't have an account? Sign up
+        Already have an account? Sign in
     </a>
 );
 
-// Mock Login Handler
-const mockHandleLogin = (e, username, password) => {
-    e.preventDefault();
-    console.log('Attempting login...');
-    console.log('Username:', username);
-    console.log('Password:', password);
-
-};
+const MySwal = withReactContent(Swal);
 
 // --- Main UserRegister Component ---
 const UserRegister = () => {
-    // Mock State for Form
+    const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [role, setRole] = useState('users'); 
+    const [email, setEmail] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     
-    // Combine mock states into the actual handler
-    const handleLogin = (e) => {
-        setIsLoading(true);
-        mockHandleLogin(e, username, password);
-        setTimeout(() => setIsLoading(false), 1500); 
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await registerUser({ username, password, email });
+
+            if (res.status) {
+                MySwal.fire({
+                    title: "Yeay!",
+                    text: "Register successful! now login in to your account.",
+                    icon: "success"
+                });
+                navigate('/user/login');
+            } else {
+                throw new Error(res.message || "Registration failed.");
+            }
+
+        } catch (err) {
+            let errorMessage = "An unexpected error occurred.";
+            const statusCode = err.response?.status || err.status; 
+
+            if (statusCode === 409) {
+                errorMessage = "Username and email already taken.";
+            } else if (err.message) {
+                errorMessage = err.message;
+            }
+
+            MySwal.fire({
+                title: "Opps!",
+                text: errorMessage,
+                icon: "error"
+            });
+        }
     };
 
 
@@ -49,115 +73,37 @@ const UserRegister = () => {
                     <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
                         Sign up
                     </h2>
-                    {role === 'users' && <LinkRegister />}
+                    <LinkLogin />
                 </div>
 
-                <form className="space-y-6" onSubmit={handleLogin}>
+                <form className="space-y-6" onSubmit={handleRegister}>
+
+                    {/* Email Input */}
+                    <FormInput
+                        title="Email"
+                        name="email"
+                        type="email"
+                        placeholder="Enter your email"
+                        onChangeHandler={ (e) => setEmail(e.target.value)}
+                    />
 
                     {/* Username Input */}
-                    <div>
-                        <label
-                            htmlFor="username"
-                            className="block text-sm font-semibold text-gray-700 mb-1"
-                        >
-                            Username
-                        </label>
-                        <div className="mt-1 relative rounded-lg shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <User className="h-5 w-5 text-gray-400" />
-                            </div>
-                            <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                autoComplete="username"
-                                required
-                                className={inputClasses}
-                                placeholder="Your username"
-                                onChange={e => setUsername(e.target.value)}
-                                value={username}
-                            />
-                        </div>
-                    </div>
-                    
-                    {/* Username Input */}
-                    <div>
-                        <label
-                            htmlFor="username"
-                            className="block text-sm font-semibold text-gray-700 mb-1"
-                        >
-                            Username
-                        </label>
-                        <div className="mt-1 relative rounded-lg shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <User className="h-5 w-5 text-gray-400" />
-                            </div>
-                            <input
-                                id="username"
-                                name="username"
-                                type="text"
-                                autoComplete="username"
-                                required
-                                className={inputClasses}
-                                placeholder="Your username"
-                                onChange={e => setUsername(e.target.value)}
-                                value={username}
-                            />
-                        </div>
-                    </div>
+                    <FormInput
+                        title="Username"
+                        name="username"
+                        type="text"
+                        placeholder="Enter your username"
+                        onChangeHandler={ (e) => setUsername(e.target.value)}
+                    />
 
                     {/* Password Input */}
-                    <div>
-                        <label
-                            htmlFor="password"
-                            className="block text-sm font-semibold text-gray-700 mb-1"
-                        >
-                            Password
-                        </label>
-                        <div className="mt-1 relative rounded-lg shadow-sm">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Lock className="h-5 w-5 text-gray-400" />
-                            </div>
-                            <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                autoComplete="current-password"
-                                required
-                                className={inputClasses}
-                                placeholder="••••••••"
-                                onChange={e => setPassword(e.target.value)}
-                                value={password}
-                            />
-                        </div>
-                    </div>
-
-                    {/* Controls & Forgot Password */}
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <input
-                                id="remember-me"
-                                name="remember-me"
-                                type="checkbox"
-                                className="h-4 w-4 text-sky-500 focus:ring-sky-500 border-gray-300 rounded"
-                            />
-                            <label
-                                htmlFor="remember-me"
-                                className="ml-2 block text-sm text-gray-900"
-                            >
-                                Remember me
-                            </label>
-                        </div>
-
-                        <div className="text-sm">
-                            <button
-                                type="button" // Changed to button to prevent form submit
-                                className="font-medium text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out"
-                            >
-                                Forgot password?
-                            </button>
-                        </div>
-                    </div>
+                    <FormInput
+                        title="Password"
+                        name="password"
+                        type="text"
+                        placeholder="Enter your password"
+                        onChangeHandler={ (e) => setPassword(e.target.value)}
+                    />
 
                     {/* Main Sign In Button */}
                     <div>

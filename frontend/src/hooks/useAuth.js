@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { loginAuth } from "../api/authUser.jsx";
+import { loginAuth, registerUser } from "../api/authUser.jsx";
 import { useNavigate } from "react-router-dom";
 
 export function useLoginAuth() {
@@ -9,8 +9,7 @@ export function useLoginAuth() {
 }
 
 export const useAuth = () => {
-    const queryClient = useQueryClient();
-
+  const queryClient = useQueryClient();
     const {
         mutate,
         data,
