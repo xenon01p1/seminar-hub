@@ -1,5 +1,5 @@
 import express from "express";
-import { login, registerUser } from "../controllers/authController.js";
+import { login, registerUser, logout } from "../controllers/authController.js";
 import { totalSeminarsJoined, latestSeminar } from "../controllers/dashboard.js";
 import { verifyToken, isUser } from "../middleware/auth.js";
 import { joinSeminar } from "../controllers/seminars.js";
@@ -8,6 +8,7 @@ const router = express.Router();
 
 router.post("/login", login);
 router.post("/register", registerUser);
+router.post("/logout", logout);
 
 // DASHBOARD
 router.get("/total-seminars-joined/:user_id", verifyToken, isUser, totalSeminarsJoined);

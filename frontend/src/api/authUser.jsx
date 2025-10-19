@@ -6,3 +6,8 @@ export const loginAuth = async(data) => {
     return response;
 }
 
+export const logoutAuth = async () => {
+  const { data } = await makeRequest.post("/user/logout", {}, { withCredentials: true });
+  return data;
+};
+

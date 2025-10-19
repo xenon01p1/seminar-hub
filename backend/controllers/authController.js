@@ -91,3 +91,14 @@ export const registerUser = (req, res) => {
   });
 };
 
+export const logout = (req, res) => {
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: true
+  });
+  return res.json({
+    status: true,
+    message: "Removing cookie success"
+  })
+}
+

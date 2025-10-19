@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginAuth } from "../api/authUser.jsx";
-
+import { useNavigate } from "react-router-dom";
 
 export function useLoginAuth() {
   return useMutation({
@@ -32,3 +32,27 @@ export const useAuth = () => {
     return { mutate, data, isLoading, isError, error };
 }
 
+export const useLogout = () => {
+  const navigate = useNavigate();
+
+  const logout = async (redirect = "/login") => {
+    try {
+      localStorage.removeItem("user");
+      const res = await logoutAuth();
+
+      if (res?.status) {
+        console.log("Logout successful");
+      } else {
+        console.warn("Logout request failed");
+      }
+
+      // Redirect
+      navigate(redirect);
+    } catch (error) {
+      console.error("Logout error:", error);
+      navigate(redirect);
+    }
+  };
+
+  return { logout };
+};
