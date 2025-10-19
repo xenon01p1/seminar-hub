@@ -4,12 +4,13 @@ import { useAuth } from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // --- Mock Components/Functions (for runnable example) ---
 const LinkRegister = () => (
-    <a href="#" className="mt-2 text-sm font-medium text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out">
+    <Link to="/user/register" className="mt-2 text-sm font-medium text-sky-500 hover:text-sky-600 transition duration-150 ease-in-out">
         Don't have an account? Sign up
-    </a>
+    </Link>
 );
 
 const MySwal = withReactContent(Swal);
