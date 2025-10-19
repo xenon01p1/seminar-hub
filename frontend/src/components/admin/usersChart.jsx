@@ -25,7 +25,6 @@ export default function UsersChart() {
     }
     
     const labels = dataTotalUser.map( (data) => moment(data.month).format("MMMM YYYY") );
-    console.log(labels);
 
     const options = {
         responsive: true,

@@ -9,7 +9,7 @@ const KpiCard = ({ title, value, icon, accentColorClass, children }) => {
           <p className="text-2xl font-bold text-gray-800 mt-1">
             {value}
           </p>
-          {children} {/* For the progress bar in the 'Tasks' card */}
+          {children} 
         </div>
         {icon && (
           <div className="ml-4 text-gray-400">

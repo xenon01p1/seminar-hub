@@ -9,12 +9,12 @@ export default function SeminarsChart() {
         data: dataTotalSeminars
     } = useGetTotalSeminars();
 
-    // 1. Handle Loading State
+    // Handle Loading State
     if (isLoading) {
         return (<div>Loading recent seminars chart...</div>);
     } 
 
-    // 2. Handle Error State
+    // Handle Error State
     if (error) {
         return (<div>Error: { error.message }</div>);
     }
@@ -25,7 +25,6 @@ export default function SeminarsChart() {
     }
     
     const labels = dataTotalSeminars.map( (data) => moment(data.month).format("MMMM YYYY") );
-    console.log(labels);
 
     const options = {
         responsive: true,
