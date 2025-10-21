@@ -10,6 +10,16 @@ export const useGetSeminars = () => {
     return { isLoading, error, data };
 }
 
+export const useGetSeminarsLimit = (limit) => {
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['getSeminars'],
+        queryFn: getSeminars
+    });
+
+    const limitedData = data ? data.slice(0, limit) : [];
+    return { isLoading, error, limitedData };
+}
+
 export const useGetTotalSeminars = () => {
     const { isLoading, error, data } = useQuery({
         queryKey: ['getTotalSeminars'],
