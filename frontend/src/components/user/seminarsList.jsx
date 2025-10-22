@@ -1,34 +1,16 @@
+import { useGetSeminarsLimit } from "../../hooks/useSeminars";
+import moment from "moment";
+
 export default function SeminarsList({ primary_color, primary_dark }) {
     const CalendarIcon = (props) => (
         <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
     );
 
-    const SEMINARS_DATA = [
-        {
-            id: 1,
-            img: "https://placehold.co/400x200/2563eb/ffffff?text=AI+Ethics",
-            title: "Ethical AI: Beyond Compliance",
-            description: "A deep dive into building bias-free, transparent, and responsible AI systems that stand up to scrutiny.",
-            category: "Policy & Governance",
-            startDate: "Nov 1, 2024",
-        },
-        {
-            id: 2,
-            img: "https://placehold.co/400x200/1d4ed8/ffffff?text=Prompt+Engineering",
-            title: "Mastering Prompt Engineering for LLMs",
-            description: "Learn advanced techniques to extract maximum value and predictable output from large language models.",
-            category: "Technical Skills",
-            startDate: "Nov 8, 2024",
-        },
-        {
-            id: 3,
-            img: "https://placehold.co/400x200/1e40af/ffffff?text=Business+Strategy",
-            title: "Future-Proofing Your Business Strategy with GenAI",
-            description: "How to restructure your organizational processes to leverage generative AI for exponential market growth.",
-            category: "Leadership & Strategy",
-            startDate: "Nov 15, 2024",
-        },
-    ];
+    const { isLoading, error, limitedData } = useGetSeminarsLimit(3);
+    console.log(limitedData);
+
+    if (isLoading) return <div>Loading data...</div>
+    if (error) return <div>Error data please reload.</div>
 
     return (
         <div id="seminars" className={`py-24 bg-${ primary_color }/5`}>
@@ -37,7 +19,7 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                     Full Seminar Schedule
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {SEMINARS_DATA.map((seminar) => (
+                    {limitedData.map((seminar) => (
                         <div 
                             key={seminar.id} 
                             className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border border-gray-100"
@@ -69,7 +51,7 @@ export default function SeminarsList({ primary_color, primary_dark }) {
 
                                 <div className="flex items-center text-sm text-gray-500 font-medium">
                                     <CalendarIcon className={`w-4 h-4 text-${ primary_dark } mr-2`} />
-                                    <span>Starts: {seminar.startDate}</span>
+                                    <span>Starts: {moment(seminar.start_at).format('MMMM Do YYYY')}</span>
                                 </div>
                             </div>
                         </div>

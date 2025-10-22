@@ -1,6 +1,6 @@
 export default function Hero ({ primary_color, primary_dark, color_hover }) {
     return (
-        <div className={`relative pt-24 pb-40 bg-gray-50 overflow-hidden`}>
+        <div id="home" className={`relative pt-24 pb-40 bg-gray-50 overflow-hidden`}>
             {/* Background Subtle Gradient Shape */}
             <div className="absolute inset-0 z-0 opacity-10">
                 <div className={`w-full h-full bg-gradient-to-br from-white via-white to-${ primary_color }/30`}></div>

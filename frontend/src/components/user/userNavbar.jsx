@@ -1,8 +1,14 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 
 export default function UserNavbar({ primary_dark, color_hover }) {
     const [isOpen, setIsOpen] = useState(false);
+    const userString = localStorage.getItem("user");
+    const userData =  userString && userString !== 'undefined'
+        ? JSON.parse(userString) 
+        : null; 
+
+    console.log(userData);
     
     return (
         <nav className="sticky top-0 z-50 bg-white shadow-md">
@@ -16,7 +22,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                     {/* Desktop Menu */}
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
-                            {['About', 'Seminars', 'Speakers', 'Register'].map((item) => (
+                            {['Home', 'Benefits', 'Seminars', 'Testimony'].map((item) => (
                                 <a
                                     key={item}
                                     href={`#${item.toLowerCase()}`}
@@ -25,12 +31,28 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                                     {item}
                                 </a>
                             ))}
-                            <a 
+                            { userData && userData.role === "users" ?
+                                <Link
+                                    key="dashboard_mobile"
+                                    to="/user/dashboard"
+                                    className={`ml-4 px-4 py-2 bg-${primary_dark} text-white rounded-lg text-sm font-medium hover:bg-${color_hover} transition duration-150`}
+                                >
+                                    Dashboard
+                                </Link> :
+                                <Link
+                                    key="sign_in_mobile"
+                                    to="/user/login"
+                                    className={`ml-4 px-4 py-2 bg-${primary_dark} text-white rounded-lg text-sm font-medium hover:bg-${color_hover} transition duration-150`}
+                                >
+                                    Sign in
+                                </Link>
+                            }
+                            {/* <a 
                                 href="#register" 
                                 className={`ml-4 px-4 py-2 bg-${primary_dark} text-white rounded-lg text-sm font-medium hover:bg-${color_hover} transition duration-150`}
                             >
-                                Get Started
-                            </a>
+                                Sign in
+                            </a> */}
                         </div>
                     </div>
 
@@ -56,7 +78,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
             {isOpen && (
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
-                        {['About', 'Seminars', 'Speakers', 'Register'].map((item) => (
+                        {['Home', 'Benefits', 'Seminars', 'Testimony'].map((item) => (
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
@@ -66,13 +88,37 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                                 {item}
                             </a>
                         ))}
-                        <a 
-                            href="#register" 
+                        { userData && userData.role === "users" ?
+                            <Link
+                                key="dashboard_mobile"
+                                to="/user/dashboard"
+                                className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
+                            >
+                                Dashboard
+                            </Link> :
+                            <Link
+                                key="sign_in_mobile"
+                                to="/user/login"
+                                className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
+                            >
+                                Sign in
+                            </Link>
+                        }
+                        {/* <Link
+                            key={ userData ? "dashboard_mobile" : "sign_in_mobile" }
+                            to={ userData ? "" : "" }
+                            className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
+                        >
+                            { userData ? "Dashboard" : "Sign in" }
+                        </Link> */}
+                        {/* <a 
+                            href=""
                             className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
                             onClick={() => setIsOpen(false)}
                         >
-                            Get Started
-                        </a>
+                            Sign in
+                        </a> */}
+                        
                     </div>
                 </div>
             )}

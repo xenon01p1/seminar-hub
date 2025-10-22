@@ -26,7 +26,7 @@ router.patch("/admins/:id", verifyToken, isAdmin, editAdmin);
 router.delete("/admins/:id", verifyToken, isAdmin, deleteAdmin);
 
 // CRUD seminars TABLE
-router.get("/seminars", verifyToken, getSeminars);
+router.get("/seminars", getSeminars);
 router.post("/seminars", verifyToken, isAdmin, upload.single('img'), addSeminar);
 router.patch("/seminars/:id", verifyToken, isAdmin, upload.single('img'), editSeminar);
 router.delete("/seminars/:id", verifyToken, isAdmin, deleteSeminar);
