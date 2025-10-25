@@ -1,4 +1,6 @@
 import { User, Mail, LockKeyhole } from 'lucide-react';
+import FormInput from "../formInput";
+import React, { useState } from 'react';
 
 export default function ProfileForm ({ profile, setProfile }) {
   const [form, setForm] = useState({
@@ -32,41 +34,53 @@ export default function ProfileForm ({ profile, setProfile }) {
         <LockKeyhole className="w-6 h-6 mr-2" /> Update Credentials
       </h3>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <InputField
+        {/* 1. Username Field */}
+        <FormInput
           id="username"
-          label="Username"
+          title="Username"
           value={form.username}
           onChange={handleChange}
-          icon={User}
-          placeholder="New username"
+          Icon={User}
+          placeholder="Enter new username"
+          isRequired={true}
         />
-        <InputField
+        
+        {/* 2. Email Field */}
+        <FormInput
           id="email"
-          label="Email Address"
+          title="Email Address"
           type="email"
           value={form.email}
           onChange={handleChange}
-          icon={Mail}
-          placeholder="New email"
+          Icon={Mail}
+          placeholder="Enter new email"
+          isRequired={true}
         />
-        <InputField
+        
+        {/* 3. Current Password Field */}
+        <FormInput
           id="currentPassword"
-          label="Current Password"
+          title="Current Password"
           type="password"
           value={form.currentPassword}
           onChange={handleChange}
-          icon={LockKeyhole}
-          placeholder="Enter current password"
+          Icon={LockKeyhole}
+          placeholder="Enter current password to confirm changes"
+          isRequired={false} // Assuming current password is required only if changing email/password
         />
-        <InputField
+        
+        {/* 4. New Password Field */}
+        <FormInput
           id="newPassword"
-          label="New Password"
+          title="New Password"
           type="password"
           value={form.newPassword}
           onChange={handleChange}
-          icon={LockKeyhole}
+          Icon={LockKeyhole}
           placeholder="Leave blank to keep current password"
+          isRequired={false}
         />
+
         <button
           type="submit"
           className="w-full mt-6 py-2 px-4 border border-transparent rounded-lg shadow-lg text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 transition duration-150 transform hover:scale-[1.02]"

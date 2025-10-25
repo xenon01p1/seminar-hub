@@ -1,6 +1,9 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState } from 'react';
 // Added Home icon for the navigation button
 import { User, Mail, Calendar, ListChecks, LockKeyhole, Home } from 'lucide-react';
+import LatestSeminars from '../../components/user/latestSeminars';
+import ProfileCard from '../../components/user/profileCard';
+import ProfileForm from '../../components/user/profileForm';
 
 // --- Hardcoded Data ---
 
@@ -21,98 +24,13 @@ const seminarsData = [
 
 // --- Utility Components ---
 
-// A visually styled input field for the forms
-const InputField = ({ id, label, type = 'text', value, onChange, icon: Icon, placeholder }) => (
-  <div className="space-y-1">
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700">
-      {label}
-    </label>
-    <div className="relative mt-1 rounded-lg shadow-sm">
-      <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-        <Icon className="h-5 w-5 text-sky-400" aria-hidden="true" />
-      </div>
-      <input
-        type={type}
-        name={id}
-        id={id}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className="block w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-gray-900 focus:border-sky-500 focus:ring-sky-500 sm:text-sm transition duration-150"
-      />
-    </div>
-  </div>
-);
-
-// --- Main Components ---
-
-// 1. Profile Card Component
-
-
-// 2. Update Profile Form Component
-
-
-// 3. Seminars Table Component
-const SeminarsTable = ({ seminars }) => (
-  <div className="bg-white p-6 rounded-xl shadow-2xl lg:col-span-2 overflow-x-auto">
-    <h3 className="text-xl font-bold mb-6 text-sky-700 border-b pb-2 border-sky-100 flex items-center">
-      <ListChecks className="w-6 h-6 mr-2" /> Joined Seminars History
-    </h3>
-    <table className="min-w-full divide-y divide-gray-200">
-      <thead className="bg-sky-50">
-        <tr>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider rounded-tl-lg">
-            Seminar Name
-          </th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">
-            Date
-          </th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider hidden sm:table-cell">
-            Instructor
-          </th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider rounded-tr-lg">
-            Status
-          </th>
-        </tr>
-      </thead>
-      <tbody className="bg-white divide-y divide-gray-200">
-        {seminars.map((seminar) => (
-          <tr key={seminar.id} className="hover:bg-sky-50 transition duration-100">
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-              {seminar.name}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-              {seminar.date}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden sm:table-cell">
-              {seminar.instructor}
-            </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm">
-              <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                seminar.status === 'Completed'
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-yellow-100 text-yellow-800'
-              }`}>
-                {seminar.status}
-              </span>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
-
-
-// --- Main App Component ---
-
-const App = () => {
+const UserProfile = () => {
   const [profile, setProfile] = useState(initialProfile);
 
   // Function to simulate navigation back to the landing page
   const handleGoHome = () => {
     console.log("Navigating back to the landing page... (Simulated)");
-    // In a real application, you would use a router (e.g., useNavigate from react-router-dom) here.
+    // In a real UserProfilelication, you would use a router (e.g., useNavigate from react-router-dom) here.
     alert('Going back to the home page! (Simulated Action)');
   };
 
@@ -155,7 +73,7 @@ const App = () => {
 
         {/* Right Column: Seminars Table */}
         <div className="lg:col-span-2">
-          <SeminarsTable seminars={seminarsData} />
+          <LatestSeminars seminars={seminarsData} />
         </div>
 
       </div>
@@ -163,4 +81,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default UserProfile;
