@@ -34,7 +34,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                             { userData && userData.role === "users" ?
                                 <Link
                                     key="dashboard_mobile"
-                                    to="/user/dashboard"
+                                    to="/user/profile"
                                     className={`ml-4 px-4 py-2 bg-${primary_dark} text-white rounded-lg text-sm font-medium hover:bg-${color_hover} transition duration-150`}
                                 >
                                     Dashboard
@@ -91,7 +91,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                         { userData && userData.role === "users" ?
                             <Link
                                 key="dashboard_mobile"
-                                to="/user/dashboard"
+                                to="/user/profile"
                                 className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
                             >
                                 Dashboard

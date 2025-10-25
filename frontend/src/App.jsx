@@ -9,6 +9,7 @@ import PrivateRoute from "./privateRoute.jsx";
 import UserDashboard from "./pages/user/userDashboard.jsx";
 import UserLogin from "./pages/user/userLogin.jsx";
 import UserRegister from "./pages/user/userRegister.jsx";
+import UserProfile from "./pages/user/userProfile.jsx";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="user/login" element={<UserLogin />} />
         <Route path="user/register" element={<UserRegister />} />
         <Route path="user/dashboard" element={<UserDashboard />} />
+        <Route path="user/profile" element={<UserProfile />} />
 
         <Route path="admin/login" element={<LoginAdmin />} />
         <Route path="admin/dashboard" element={<Dashboard />} />
