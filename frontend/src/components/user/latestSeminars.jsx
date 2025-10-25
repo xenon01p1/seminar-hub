@@ -1,6 +1,7 @@
 import { ListChecks } from 'lucide-react';
 
 export default function LatestSeminars ({ seminars }){
+
     return (
         <div className="bg-white p-6 rounded-xl shadow-2xl lg:col-span-2 overflow-x-auto">
             <h3 className="text-xl font-bold mb-6 text-sky-700 border-b pb-2 border-sky-100 flex items-center">

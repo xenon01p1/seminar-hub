@@ -38,7 +38,7 @@ export const login = (req, res) => {
 
     // CREATE TOKEN
     const token = jwt.sign(
-      { id: userData.id, role: role, username: userData.username },
+      { id: userData.id, role: role, username: userData.username, email:userData.email },
       process.env.JWT_SECRET
     );
 
@@ -50,6 +50,7 @@ export const login = (req, res) => {
       data: {
         id: userData.id,
         username: username, 
+        email: userData.email,
         role: role,
       }
     });
