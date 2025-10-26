@@ -100,7 +100,14 @@ export const latestSeminar = async (req, res) => {
 
   try {
     const data = await db.query(`
-      SELECT s.id, s.title, s.start_at, COUNT(j.user_id) AS total_attendees
+      SELECT 
+        s.id, 
+        s.title,
+        s.category,
+        s.link, 
+        s.pass_code,
+        s.start_at, 
+        COUNT(j.user_id) AS total_attendees
       FROM seminars s
       LEFT JOIN joined_users j ON s.id = j.seminar_id
       WHERE j.user_id = ?

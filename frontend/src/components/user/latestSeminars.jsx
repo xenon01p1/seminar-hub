@@ -1,54 +1,117 @@
+import React, { useState, useEffect, useMemo } from 'react';
+import moment from 'moment';
 import { ListChecks } from 'lucide-react';
+import TidyTable from "../../components/table.jsx";
+import RangedPagination from "../../components/rangedPagination.jsx";
+import { useGetLatestSeminars } from "../../hooks/useSeminarsJoined.js";
+import {
+  useReactTable,
+  getCoreRowModel,
+  getSortedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+} from "@tanstack/react-table";
 
-export default function LatestSeminars ({ seminars }){
+export default function LatestSeminars ({ seminars, profile }){
+
+    const [sorting, setSorting] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState("");
+    const { isLoading, error, data } = useGetLatestSeminars(profile?.id);
+
+    // 💡 PAGINATION STATE (Set pageSize to 2 for easy testing)
+    const [pagination, setPagination] = useState({
+        pageIndex: 0, 
+        pageSize: 2, 
+    });
+
+    const joinedSeminarDatas = useMemo(
+        () => data || [],
+        [data]
+    );
+
+    console.log(data);
+
+    // --- TABLE SET UP ---
+    const columns = useMemo(
+        () => [
+          { header: "Title", accessorKey: "title" },
+          { header: "Link", accessorKey: "link" },
+          { header: "Pass Code", accessorKey: "pass_code" },
+          { 
+            header: "Start Date", 
+            accessorKey: "start_at",
+            cell: ({ row }) => {
+                const startDate = moment(row).format('MMMM Do YYYY');
+                const startTime = moment(row).format('h:mm:ss a');
+
+                return (
+                    <>
+                        { startDate } <br /> { startTime }
+                    </>
+                )
+            }
+          },
+          { 
+            header: "Status", 
+            id: "status",
+            cell: ({ row }) => {
+                // FIX 2: Get the start_at value from the row's original data
+                const seminarDate = row.original.start_at; 
+                
+                if (!seminarDate) {
+                    return <span style={{ color: 'gray' }}>N/A</span>;
+                }
+
+                // Logic to determine status
+                const now = moment();
+                const isUpcoming = moment(seminarDate).isAfter(now);
+                
+                const statusText = isUpcoming ? "Upcoming" : "Closed";
+                const style = {
+                    fontWeight: 'bold',
+                    color: isUpcoming ? 'blue' : ''
+                };
+
+                return <span style={style}>{statusText}</span>;
+            },
+        },
+        ],
+        []
+    );
+    
+    const table = useReactTable({
+        data: joinedSeminarDatas,
+        columns,
+        
+        state: {
+          sorting,
+          globalFilter,
+          pagination
+        },
+        onSortingChange: setSorting,
+        onGlobalFilterChange: setGlobalFilter,
+        onPaginationChange: setPagination, 
+        getCoreRowModel: getCoreRowModel(),
+        getSortedRowModel: getSortedRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel()
+    });
 
     return (
         <div className="bg-white p-6 rounded-xl shadow-2xl lg:col-span-2 overflow-x-auto">
             <h3 className="text-xl font-bold mb-6 text-sky-700 border-b pb-2 border-sky-100 flex items-center">
             <ListChecks className="w-6 h-6 mr-2" /> Joined Seminars History
             </h3>
-            <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-sky-50">
-                <tr>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider rounded-tl-lg">
-                    Seminar Name
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider">
-                    Date
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider hidden sm:table-cell">
-                    Instructor
-                </th>
-                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-sky-700 uppercase tracking-wider rounded-tr-lg">
-                    Status
-                </th>
-                </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-                {seminars.map((seminar) => (
-                <tr key={seminar.id} className="hover:bg-sky-50 transition duration-100">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {seminar.name}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {seminar.date}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 hidden sm:table-cell">
-                    {seminar.instructor}
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        seminar.status === 'Completed'
-                        ? 'bg-green-100 text-green-800'
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
-                        {seminar.status}
-                    </span>
-                    </td>
-                </tr>
-                ))}
-            </tbody>
-            </table>
+            
+            <TidyTable table ={ table } />
+
+            {/* Buttons */}
+            <div className="space-x-2">
+              <RangedPagination 
+                table={ table }
+              />
+            
+            </div>
         </div>
     );
 }
