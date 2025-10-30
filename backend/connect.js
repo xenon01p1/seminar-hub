@@ -7,7 +7,7 @@ import util from "util"; // ⬅️ You need this!
 export const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",
+    password: "1234",
     database: "seminar"
 });
 

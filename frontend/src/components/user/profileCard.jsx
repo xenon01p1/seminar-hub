@@ -1,7 +1,7 @@
 import { Mail, Calendar } from 'lucide-react';
 
 
-export default function ProfileCard ({ profile }) {
+export default function ProfileCard ({ profile, totalJoinedSeminar }) {
 
     return (
         <div className="bg-white p-6 rounded-xl shadow-2xl border-t-8 border-sky-500 transform hover:scale-[1.01] transition-transform duration-300">
@@ -17,7 +17,7 @@ export default function ProfileCard ({ profile }) {
                 </div>
                 <div className="flex items-center space-x-2 justify-center text-lg bg-sky-50 rounded-lg p-2 font-semibold text-sky-700">
                 <Calendar className="w-5 h-5" />
-                <span>{ profile.totalSeminarsJoined } Seminars Joined</span>
+                <span>{ totalJoinedSeminar } Seminars Joined</span>
                 </div>
             </div>
             </div>

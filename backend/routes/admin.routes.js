@@ -16,7 +16,7 @@ router.get("/total-attendees", verifyToken, isAdmin, totalAttendees);
 // CRUD users TABLE
 router.get("/users", verifyToken, isAdmin, getUsers);
 router.post("/users", verifyToken, isAdmin, addUser);
-router.patch("/users/:id", verifyToken, isAdmin, editUser);
+router.patch("/users/:id", verifyToken, editUser);
 // router.delete("/users/:id", verifyToken, isAdmin, deleteUser);
 
 // CRUD admins TABLE

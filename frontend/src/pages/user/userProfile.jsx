@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 // Added Home icon for the navigation button
 import { Home } from 'lucide-react';
-import { useGetTotalJoinedSeminars } from '../../hooks/useSeminarsJoined';
-import LatestSeminars from '../../components/user/latestSeminars';
-import ProfileCard from '../../components/user/profileCard';
-import ProfileForm from '../../components/user/profileForm';
+import { useGetTotalJoinedSeminars } from '../../hooks/useSeminarsJoined.js';
+import LatestSeminars from '../../components/user/latestSeminars.jsx';
+import ProfileCard from '../../components/user/profileCard.jsx';
+import ProfileForm from '../../components/user/profileForm.jsx';
+import { AuthContext } from '../../context/authContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const seminarsData = [
   { id: 1, name: 'Advanced React Hooks', date: '2025-10-15', status: 'Completed', instructor: 'Dr. Vega' },
@@ -15,35 +17,14 @@ const seminarsData = [
   { id: 6, name: 'Introduction to GraphQL', date: '2025-07-25', status: 'Completed', instructor: 'R. Blake' },
 ];
 
-// --- Utility Components ---
 
 const UserProfile = () => {
-  const adminString = localStorage.getItem("user");
-  const userData =  adminString && adminString !== 'undefined'
-    ? JSON.parse(adminString) 
-    : null; 
-
-  const { isLoading, error, data } = useGetTotalJoinedSeminars(userData?.id);
-  const initialProfile = {
-    id: userData.id,
-    username: userData.username,
-    email: userData.email,
-    totalSeminarsJoined: data ?? 0,
-  };
-
-  const [profile, setProfile] = useState(initialProfile);
-  useEffect(() => {
-    if (data !== undefined) {
-      setProfile((prev) => ({
-        ...prev,
-        totalSeminarsJoined: data,
-      }));
-    }
-  }, [data]);
+  const navigate = useNavigate();
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { data } = useGetTotalJoinedSeminars(currentUser?.id);
 
   const handleGoHome = () => {
-    console.log("Navigating back to the landing page... (Simulated)");
-    alert('Going back to the home page! (Simulated Action)');
+    navigate('/');
   };
 
   return (
@@ -79,13 +60,13 @@ const UserProfile = () => {
 
         {/* Left Column: Profile Card and Update Form */}
         <div className="space-y-8">
-          <ProfileCard profile={profile} />
-          <ProfileForm profile={profile} setProfile={setProfile} />
+          <ProfileCard profile={ currentUser } totalJoinedSeminar={ data } />
+          <ProfileForm />
         </div>
 
         {/* Right Column: Seminars Table */}
         <div className="lg:col-span-2">
-          <LatestSeminars seminars={seminarsData} profile={ profile } />
+          <LatestSeminars seminars={seminarsData} profile={ currentUser } />
         </div>
 
       </div>

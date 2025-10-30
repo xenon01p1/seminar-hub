@@ -35,8 +35,8 @@ export const useEditUser = () => {
 
     return useMutation({
         mutationFn: ({ id, data }) => editUser(id, data),
-        onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['getUsers'] }); 
+        onSuccess: (data) => {
+          queryClient.invalidateQueries({ queryKey: ['getUsers'] }); 
         }
     })
 }

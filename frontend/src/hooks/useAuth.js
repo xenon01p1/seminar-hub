@@ -1,6 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginAuth, registerUser } from "../api/authUser.jsx";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from '../context/authContext.jsx';
+import { useContext } from "react";
 
 export function useLoginAuth() {
   return useMutation({
@@ -10,6 +12,8 @@ export function useLoginAuth() {
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
+  const { setCurrentUser } = useContext(AuthContext);
+
     const {
         mutate,
         data,
@@ -20,7 +24,7 @@ export const useAuth = () => {
         mutationFn: loginAuth,
         onSuccess: (responseData) => {
             console.log(responseData.data);
-            localStorage.setItem('user', JSON.stringify(responseData.data));
+            setCurrentUser(responseData.data);
             queryClient.invalidateQueries({ queryKey: ['users'] });
         },
         onError: (err) => {
