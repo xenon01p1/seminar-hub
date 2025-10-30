@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import moment from 'moment';
 import { ListChecks } from 'lucide-react';
 import TidyTable from "../../components/table.jsx";
@@ -96,6 +96,9 @@ export default function LatestSeminars ({ seminars, profile }){
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     });
+
+    if (isLoading) return <div className='text-center mx-auto'>Loading data....</div>
+    if (error) return <div className='text-center mx-auto'>Error encountered. Please report this to the developer.</div>
 
     return (
         <div className="bg-white p-6 rounded-xl shadow-2xl lg:col-span-2 overflow-x-auto">

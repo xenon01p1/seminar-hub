@@ -1,5 +1,10 @@
 import { useGetSeminarsLimit } from "../../hooks/useSeminars";
+import { useJoinSeminar } from "../../hooks/useSeminarsJoined";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import moment from "moment";
+
+const MySwal = withReactContent(Swal);
 
 export default function SeminarsList({ primary_color, primary_dark }) {
     const CalendarIcon = (props) => (
@@ -7,7 +12,32 @@ export default function SeminarsList({ primary_color, primary_dark }) {
     );
 
     const { isLoading, error, limitedData } = useGetSeminarsLimit(3);
-    console.log(limitedData);
+    const { mutate: joinSeminarMutate } = useJoinSeminar();
+
+    const handleJoinSeminar = (id) => {
+        joinSeminarMutate(
+            { id },
+            {
+                onSuccess: async () => {
+                    await MySwal.fire({
+                        title: "Success!",
+                        text: "Successfully joined a seminar.",
+                        icon: "success",
+                    });
+
+                },
+                onError: (error) => {
+                    MySwal.fire({
+                        title: "Oops!",
+                        text: error.response?.data?.message || "Something went wrong.",
+                        icon: "error",
+                    });
+
+                console.log(error);
+                },
+            }
+        );
+    }
 
     if (isLoading) return <div>Loading data...</div>
     if (error) return <div>Error data please reload.</div>
@@ -22,7 +52,7 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                     {limitedData.map((seminar) => (
                         <div 
                             key={seminar.id} 
-                            className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border border-gray-100"
+                            className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border border-gray-100 flex flex-col"
                         >
                             {/* Image */}
                             <div className="h-48 overflow-hidden">
@@ -33,11 +63,13 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                                 />
                             </div>
                             
-                            <div className="p-6">
+                            <div className="p-6 flex-grow flex flex-col"> 
                                 {/* Category Tag */}
-                                <span className={`inline-block text-xs font-semibold uppercase tracking-wider text-white bg-${primary_color} px-3 py-1 rounded-full mb-3`}>
-                                    {seminar.category}
-                                </span>
+                                <div>
+                                    <span className={`inline-flex text-xs font-semibold uppercase tracking-wider text-white bg-${primary_color} px-3 py-1 rounded-full mb-3`}>
+                                        {seminar.category}
+                                    </span>
+                                </div>
                                 
                                 {/* Title */}
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">
@@ -45,14 +77,26 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                                 </h3>
                                 
                                 {/* Description */}
-                                <p className="text-gray-600 text-sm mb-4">
+                                <p className="text-gray-600 text-sm mb-4 grow"> 
                                     {seminar.description}
                                 </p>
 
-                                <div className="flex items-center text-sm text-gray-500 font-medium">
+                                <div className="flex items-center text-sm text-gray-500 font-medium mb-6">
                                     <CalendarIcon className={`w-4 h-4 text-${ primary_dark } mr-2`} />
                                     <span>Starts: {moment(seminar.start_at).format('MMMM Do YYYY')}</span>
                                 </div>
+
+                                <button 
+                                    id={seminar.id}
+                                    key={seminar.id}
+                                    onClick={() => handleJoinSeminar(seminar.id)}
+                                    className={`w-full py-3 px-4 text-white font-semibold rounded-lg transition duration-300 
+                                            bg-${primary_color} hover:bg-blue-600 
+                                            focus:outline-none focus:ring-4 focus:ring-${primary_color}/50 cursor-pointer`}
+                                >
+                                    Join Seminar
+                                </button>
+
                             </div>
                         </div>
                     ))}

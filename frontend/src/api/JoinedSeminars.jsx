@@ -23,3 +23,15 @@ export const getLatestSeminars = async (id) => {
     throw error;
   }
 }
+
+export const joinSeminar = async (id) => {
+  try {
+    const { data: response } = await makeRequest.get(`/user/join-seminar/${ id }`);
+    return response.data;
+  } catch (error) {
+    if (error.response) {
+      throw new Error(error.response.data.message || "Failed to join seminar.");
+    }
+    throw error;
+  }
+}
