@@ -18,6 +18,38 @@ export const getSeminars = async (req, res) => {
   }
 };
 
+export const getSeminarsJoinJoinedSeminars = async (req, res) => {
+  const { user_id } = req.params;
+  if (!user_id || user_id.length === 0) {
+    return res.status(400).json({ status: false, message: "Required 'user_id' field" });
+  }
+
+  try {
+    const query = `
+      SELECT 
+        s.*,
+        CASE 
+          WHEN ju.user_id IS NOT NULL THEN TRUE 
+          ELSE FALSE 
+        END AS is_registered
+      FROM 
+        seminars s
+      LEFT JOIN 
+        joined_users ju 
+        ON s.id = ju.seminar_id AND ju.user_id = ?
+    `;
+
+    const data = await db.query(query, [user_id]);
+
+    return res.status(200).json({ status: true, message: "Retrieving data successful!", data })
+  } catch (error) {
+    console.error("Database Query Error:", error);
+    const errorMessage = error.sqlMessage || error.message || "An internal server error occurred.";
+    return res.status(500).json({ status: false, message: errorMessage });
+  }
+}
+
+
 export const addSeminar = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ status: false, message: "img field (file upload) is required" });
