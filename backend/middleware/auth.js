@@ -7,13 +7,31 @@ export const verifyToken = (req, res, next) => {
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) return res.status(401).json({ status: false, message: "Unauthorized" });
-
+    if (err) {
+      console.error("JWT verify error:", err.message); 
+      return res.status(403).json({ status: false, message: "Unauthorized" });
+    }
+    
     console.log("Decoded JWT:", decoded);
     req.user = decoded; // { id, role, username }
     next();
   });
 };
+
+// export const verifyToken = (req, res, next) => {
+//   const token = req.cookies.accessToken || req.headers["authorization"]?.split(" ")[1];
+//   if (!token) {
+//     return res.status(401).json({ status: false, message: "No token provided" });
+//   }
+
+//   jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+//     if (err) return res.status(403).json({ status: false, message: "Unauthorized" });
+//     console.error("JWT verify error:", err.message);
+//     console.log("Decoded JWT:", decoded);
+//     req.user = decoded; // { id, role, username }
+//     next();
+//   });
+// };
 
 export const isAdmin = (req, res, next) => {
   if (req.user.role !== "admins") {

@@ -7,6 +7,7 @@ import cors from 'cors';
 import { login } from "./controllers/authController.js";
 import adminRoutes from "./routes/admin.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import authRoutes from "./routes/auth.routes.js";
 import { verifyToken } from "./middleware/auth.js";
 
 const app = express();
@@ -14,10 +15,10 @@ const app = express();
 // to allow cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Credentials", true);
-    next();
-});
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Credentials", true);
+//     next();
+// });
 app.use(
     cors({
         origin: [
@@ -30,6 +31,7 @@ app.use(
 app.use(cookieParser());
 app.use("/admin", adminRoutes);
 app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
 
 // to get data info with all users
 app.get('/me', verifyToken, (req, res) => {

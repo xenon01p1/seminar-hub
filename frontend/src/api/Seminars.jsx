@@ -12,6 +12,18 @@ export const getSeminars = async() => {
     }
 }
 
+export const getSeminarsJoined = async(id) => {
+    try {
+        const { data } = await makeRequest.get(`/user/get-seminars-join/${ id }`);
+        return data.data;
+    } catch (err) { 
+        if (err.response) {
+        throw new Error(err.response.data.message || "Failed to fetch Data.");
+        }
+        throw err;
+    }
+}
+
 export const getTotalSeminars = async() => {
     try {
         const { data } = await makeRequest.get('/admin/total-seminars/');

@@ -1,18 +1,42 @@
-import { useGetSeminarsLimit } from "../../hooks/useSeminars";
+import { useGetSeminarsLimit, useGetSeminarsJoined } from "../../hooks/useSeminars";
 import { useJoinSeminar } from "../../hooks/useSeminarsJoined";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import moment from "moment";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../context/authContext.jsx";
 
 const MySwal = withReactContent(Swal);
 
 export default function SeminarsList({ primary_color, primary_dark }) {
+    const { currentUser, isAuthChecked } = useContext(AuthContext);
     const CalendarIcon = (props) => (
         <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
     );
 
-    const { isLoading, error, limitedData } = useGetSeminarsLimit(3);
-    const { mutate: joinSeminarMutate } = useJoinSeminar();
+    const { 
+        data: limitData = [], 
+        isLoading: isLoadingLimit, 
+        error: errorLimit 
+    } = useGetSeminarsLimit(
+        3, 
+        { enabled: isAuthChecked && !currentUser } 
+    );
+
+    const { 
+        data: joinedData = [],
+        isLoading: isLoadingJoined, 
+        error: errorJoined 
+    } = useGetSeminarsJoined(
+        currentUser?.id, 
+        { enabled: !!currentUser } 
+    );
+
+    const data = currentUser ? joinedData : limitData;
+    const isLoading = currentUser ? isLoadingJoined : isLoadingLimit;
+    const error = currentUser ? errorJoined : errorLimit;
+
+    console.log(data);
 
     const handleJoinSeminar = (id) => {
         joinSeminarMutate(
@@ -39,8 +63,11 @@ export default function SeminarsList({ primary_color, primary_dark }) {
         );
     }
 
+    if (!isAuthChecked) return <div>Checking authentication...</div>;
     if (isLoading) return <div>Loading data...</div>
-    if (error) return <div>Error data please reload.</div>
+    if (error) return <div>Error: {error.message}</div>;
+    // if (!data || !Array.isArray(data)) return <div className="text-center mx-auto">No seminars available.</div>;
+    if (data.length === 0) return <div className="text-center mx-auto">No seminars available.</div>;
 
     return (
         <div id="seminars" className={`py-24 bg-${ primary_color }/5`}>
@@ -49,7 +76,7 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                     Full Seminar Schedule
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                    {limitedData.map((seminar) => (
+                    {data.map((seminar) => (
                         <div 
                             key={seminar.id} 
                             className="bg-white rounded-xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 transform hover:scale-[1.02] border border-gray-100 flex flex-col"
@@ -86,16 +113,35 @@ export default function SeminarsList({ primary_color, primary_dark }) {
                                     <span>Starts: {moment(seminar.start_at).format('MMMM Do YYYY')}</span>
                                 </div>
 
-                                <button 
-                                    id={seminar.id}
-                                    key={seminar.id}
-                                    onClick={() => handleJoinSeminar(seminar.id)}
-                                    className={`w-full py-3 px-4 text-white font-semibold rounded-lg transition duration-300 
-                                            bg-${primary_color} hover:bg-blue-600 
-                                            focus:outline-none focus:ring-4 focus:ring-${primary_color}/50 cursor-pointer`}
-                                >
-                                    Join Seminar
-                                </button>
+                                {
+                                    currentUser && seminar.is_registered ? 
+                                    (
+                                        <button 
+                                            disabled
+                                            id={seminar.id}
+                                            key={seminar.id}
+                                            className={`w-full py-3 px-4 text-white font-semibold rounded-lg transition duration-300 
+                                                    bg-gray-300
+                                                    focus:outline-none focus:ring-4 focus:ring-gray-200/50`}
+                                        
+                                        >
+                                            Already joined
+                                        </button>
+                                    ) :
+                                    (
+                                        <button 
+                                            id={seminar.id}
+                                            key={seminar.id}
+                                            onClick={() => handleJoinSeminar(seminar.id)}
+                                            className={`w-full py-3 px-4 text-white font-semibold rounded-lg transition duration-300 
+                                                    bg-${primary_color} hover:bg-blue-600 
+                                                    focus:outline-none focus:ring-4 focus:ring-${primary_color}/50 cursor-pointer`}
+                                        >
+                                            Join Seminar
+                                        </button>
+                                    )
+                                }
+                                
 
                             </div>
                         </div>

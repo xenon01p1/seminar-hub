@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSeminars, getTotalSeminars, addSeminar, editSeminar, deleteSeminar } from "../api/Seminars";
+import { getSeminars, getSeminarsJoined, getTotalSeminars, addSeminar, editSeminar, deleteSeminar } from "../api/Seminars";
 
 export const useGetSeminars = () => {
     const { isLoading, error, data } = useQuery({
@@ -10,14 +10,25 @@ export const useGetSeminars = () => {
     return { isLoading, error, data };
 }
 
-export const useGetSeminarsLimit = (limit) => {
+export const useGetSeminarsLimit = (limit, options = {}) => {
     const { isLoading, error, data } = useQuery({
-        queryKey: ['getSeminars'],
-        queryFn: getSeminars
+        queryKey: ['getSeminars'], 
+        queryFn: getSeminars,
+        ...options 
     });
 
     const limitedData = data ? data.slice(0, limit) : [];
-    return { isLoading, error, limitedData };
+    return { isLoading, error, data: limitedData };
+}
+
+export const useGetSeminarsJoined = (id) => {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['getSeminarsJoined', id], 
+    queryFn: () => getSeminarsJoined(id),
+    enabled: !!id, 
+  });
+
+  return { isLoading, error, data };
 }
 
 export const useGetTotalSeminars = () => {
