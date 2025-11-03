@@ -1,14 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from '../../context/authContext.jsx';
 
 export default function UserNavbar({ primary_dark, color_hover }) {
     const [isOpen, setIsOpen] = useState(false);
-    const userString = localStorage.getItem("user");
-    const userData =  userString && userString !== 'undefined'
-        ? JSON.parse(userString) 
-        : null; 
+    const { currentUser } = useContext(AuthContext);
 
-    console.log(userData);
+    console.log(currentUser);
     
     return (
         <nav className="sticky top-0 z-50 bg-white shadow-md">
@@ -31,7 +29,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                                     {item}
                                 </a>
                             ))}
-                            { userData && userData.role === "users" ?
+                            { currentUser && currentUser.role === "users" ?
                                 <Link
                                     key="dashboard_mobile"
                                     to="/user/profile"
@@ -88,7 +86,7 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                                 {item}
                             </a>
                         ))}
-                        { userData && userData.role === "users" ?
+                        { currentUser && currentUser.role === "users" ?
                             <Link
                                 key="dashboard_mobile"
                                 to="/user/profile"
@@ -105,11 +103,11 @@ export default function UserNavbar({ primary_dark, color_hover }) {
                             </Link>
                         }
                         {/* <Link
-                            key={ userData ? "dashboard_mobile" : "sign_in_mobile" }
-                            to={ userData ? "" : "" }
+                            key={ currentUser ? "dashboard_mobile" : "sign_in_mobile" }
+                            to={ currentUser ? "" : "" }
                             className={`w-11/12 mt-2 px-3 py-2 bg-${primary_dark} text-white rounded-lg text-base font-medium text-center hover:bg-${color_hover} transition duration-150`}
                         >
-                            { userData ? "Dashboard" : "Sign in" }
+                            { currentUser ? "Dashboard" : "Sign in" }
                         </Link> */}
                         {/* <a 
                             href=""

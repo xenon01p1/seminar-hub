@@ -1,18 +1,16 @@
 // src/PrivateRoute.jsx
 import { Navigate } from "react-router-dom";
+import { AuthContext } from "./context/authContext.jsx";
+import { useContext } from "react";
 
 export default function PrivateRoute({ children, allowedRole }) {
-  const userString = localStorage.getItem("user");
-  
-  const user = userString && userString !== 'undefined'
-    ? JSON.parse(userString) 
-    : null; 
+  const { currentUser } = useContext(AuthContext);
 
-  if (!user) {
+  if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
 
-  if (allowedRole && user.role !== allowedRole) {
+  if (allowedRole && currentUser.role !== allowedRole) {
     return <Navigate to="/" replace />;
   }
 

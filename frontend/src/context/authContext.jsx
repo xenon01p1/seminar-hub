@@ -9,22 +9,6 @@ export const AdminAuthContextProvider = ({ children }) => {
     })
 }
 
-// export const UserAuthContextProvider = ({ children }) => {
-//     const [currentUser, setCurrentUser] = useState(
-//         JSON.parse(localStorage.getItem("user")) || null
-//     );
-
-//     useEffect(() => {
-//         localStorage.setItem("user", JSON.stringify(currentUser));
-//     }, [currentUser]);
-
-//     return (
-//         <AuthContext.Provider value={{ currentUser, setCurrentUser }}>
-//             { children }
-//         </AuthContext.Provider>
-//     );
-// }
-
 export const UserAuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthChecked, setIsAuthChecked] = useState(false);

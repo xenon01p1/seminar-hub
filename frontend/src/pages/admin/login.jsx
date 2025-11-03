@@ -36,10 +36,10 @@ const LoginAdmin = ({ role }) => {
       }, 
       {
         onSuccess: (data) => {
+          console.log("user data", data);
           navigate("/admin/admins");
         },
         onError: (error) => {
-          // console.log(error.response.status);
           MySwal.fire({
             title: "Opps!",
             text: error.response.data.message,
