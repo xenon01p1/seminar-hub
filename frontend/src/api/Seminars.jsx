@@ -1,8 +1,8 @@
-import { makeRequest } from "../axios";
+import { makeRequest, publicRequest } from "../axios";
 
 export const getSeminars = async() => {
     try {
-        const { data } = await makeRequest.get('/admin/seminars/');
+        const { data } = await publicRequest.get('/admin/seminars/');
         return data.data;
     } catch (err) { 
         if (err.response) {

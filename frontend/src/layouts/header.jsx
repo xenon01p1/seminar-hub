@@ -1,18 +1,17 @@
 import profileImage from '../assets/img/profile.png';
+import { AuthContext } from "../context/authContext.jsx";
+import { useContext } from 'react';
 
 export function Header() {
-  const adminString = localStorage.getItem("user");
-  const admin =  adminString && adminString !== 'undefined'
-    ? JSON.parse(adminString) 
-    : null; 
+  const { currentUser, isAuthChecked } = useContext(AuthContext);
 
   return (
     <header className="flex justify-between items-center mb-8">
       <h2 className="text-2xl font-semibold text-gray-800 capitalize">
-        { admin.role }
+        { currentUser.role }
       </h2>
       <div className="flex items-center gap-4">
-        <span className="text-sm font-medium text-gray-700">{ admin.username }</span>
+        <span className="text-sm font-medium text-gray-700">{ currentUser.username }</span>
         <img
           src={ profileImage }
           alt="profile"

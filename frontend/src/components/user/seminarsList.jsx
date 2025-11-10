@@ -3,7 +3,7 @@ import { useJoinSeminar } from "../../hooks/useSeminarsJoined";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import moment from "moment";
-import { useState, useEffect, useContext } from "react";
+import { useContext, useMemo } from "react";
 import { AuthContext } from "../../context/authContext.jsx";
 
 const MySwal = withReactContent(Swal);
@@ -15,7 +15,7 @@ export default function SeminarsList({ primary_color, primary_dark }) {
     );
 
     const isUser = currentUser && currentUser.role === 'users';
-    const isAdmin = currentUser && currentUser.role === 'admin';
+    const isAdmin = currentUser && currentUser.role === 'admins';
 
     const { 
         data: limitData = [], 
@@ -32,15 +32,32 @@ export default function SeminarsList({ primary_color, primary_dark }) {
         error: errorJoined 
     } = useGetSeminarsJoined(
         currentUser?.id, 
-        { enabled: !!currentUser } 
+        isUser,
+        { enabled: isAuthChecked && isUser } 
     );
 
     
     console.log('dumbass role: ', currentUser);
 
-    const data = isUser ? joinedData : limitData;
-    const isLoading = isUser ? isLoadingJoined : isLoadingLimit;
-    const error = isUser ? errorJoined : errorLimit;
+    const { data, isLoading, error } = useMemo(() => {
+        // These variables will only re-calculate when isUser, joinedData, or limitData changes.
+        const finalData = isUser ? joinedData : limitData;
+        const finalIsLoading = isUser ? isLoadingJoined : isLoadingLimit;
+        const finalError = isUser ? errorJoined : errorLimit;
+        
+        // Log the FINAL decision to be 100% sure what the component is using
+        console.log(`Final Data Source Used: ${isUser ? 'JOINED' : 'LIMITED'}`);
+
+        return {
+            data: finalData,
+            isLoading: finalIsLoading,
+            error: finalError,
+        };
+    }, [isUser, joinedData, limitData, isLoadingJoined, isLoadingLimit, errorJoined, errorLimit]);
+
+    // const data = isUser ? joinedData : limitData;
+    // const isLoading = isUser ? isLoadingJoined : isLoadingLimit;
+    // const error = isUser ? errorJoined : errorLimit;
 
     console.log(data);
 

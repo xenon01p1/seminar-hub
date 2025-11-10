@@ -12,7 +12,7 @@ export const useGetSeminars = () => {
 
 export const useGetSeminarsLimit = (limit, options = {}) => {
     const { isLoading, error, data } = useQuery({
-        queryKey: ['getSeminars'], 
+        queryKey: ['getSeminarsLimit'], 
         queryFn: getSeminars,
         ...options 
     });
@@ -21,11 +21,11 @@ export const useGetSeminarsLimit = (limit, options = {}) => {
     return { isLoading, error, data: limitedData };
 }
 
-export const useGetSeminarsJoined = (id) => {
+export const useGetSeminarsJoined = (id, isUser) => { 
   const { isLoading, error, data } = useQuery({
     queryKey: ['getSeminarsJoined', id], 
     queryFn: () => getSeminarsJoined(id),
-    enabled: !!id, 
+    enabled: !!id && isUser, 
   });
 
   return { isLoading, error, data };

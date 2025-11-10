@@ -47,8 +47,6 @@ const LoginAdmin = ({ role }) => {
           });
         },
       });
-      setUsername("");
-      setPassword("");
     };
 
     // if (error) {
