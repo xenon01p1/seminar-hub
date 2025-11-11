@@ -57,7 +57,8 @@ export const editAdmin = (req, res) => {
     }
 
     if (Object.keys(updateData).length === 0) {
-        return res.status(400).json({ status: false, message: "No valid fields provided for update" });
+        // return res.status(400).json({ status: false, message: "No valid fields provided for update" });
+        return res.status(400).json({ status: false, message: "One of the required field is not provided" });
     }
 
     // ⚠️ If password is provided, hash it before saving
