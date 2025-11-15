@@ -22,7 +22,7 @@ export const totalSeminars = async (req, res) => {
     return res.status(200).json({
       status: true,
       message: "Retrieving data successful!",
-      data // return all rows instead of only the first one
+      data 
     });
   } catch (err) {
     return res.status(500).json({
