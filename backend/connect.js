@@ -12,7 +12,14 @@ export const db = mysql.createConnection({
 });
 
 // Promisify the query method on the single connection
-db.query = util.promisify(db.query).bind(db);
+// db.query = util.promisify(db.query).bind(db);
+
+if (process.env.NODE_ENV !== "test") {
+    db.query = util.promisify(db.query).bind(db);
+    db.beginTransaction = util.promisify(db.beginTransaction).bind(db);
+    db.commit = util.promisify(db.commit).bind(db);
+    db.rollback = util.promisify(db.rollback).bind(db);
+}
 
 // ------------------------------------------------------------------
 // 2. Connection Pool (For new, stable transactional code)

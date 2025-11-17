@@ -1,13 +1,7 @@
 import moment from "moment";
 import { db, dbPool } from "../connect.js"; 
-import util from "util";
 import path from 'path';
 
-// Promisify once
-db.query = util.promisify(db.query).bind(db);
-db.beginTransaction = util.promisify(db.beginTransaction).bind(db);
-db.commit = util.promisify(db.commit).bind(db);
-db.rollback = util.promisify(db.rollback).bind(db);
 
 export const getSeminars = async (req, res) => {
   try {
@@ -44,7 +38,7 @@ export const getSeminarsJoinJoinedSeminars = async (req, res) => {
     return res.status(200).json({ status: true, message: "Retrieving data successful!", data })
   } catch (error) {
     console.error("Database Query Error:", error);
-    const errorMessage = error.sqlMessage || error.message || "An internal server error occurred.";
+    const errorMessage = error.sqlMessage;
     return res.status(500).json({ status: false, message: errorMessage });
   }
 }
