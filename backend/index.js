@@ -1,7 +1,13 @@
 
 import express from "express";
+import { createRequire } from "module";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { swaggerSpec, swaggerUiMiddleware } from "./swagger.js";
+import swaggerUi from "swagger-ui-express";
+
+const require = createRequire(import.meta.url);
+const swaggerFile = require("./swagger-output.json");
 // import multer from 'multer';
 
 import { login } from "./controllers/authController.js";
@@ -11,6 +17,10 @@ import authRoutes from "./routes/auth.routes.js";
 import { verifyToken } from "./middleware/auth.js";
 
 const app = express();
+
+// use swagger
+// app.use("/docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // to allow cookies
 app.use(express.json());

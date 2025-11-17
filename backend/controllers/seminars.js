@@ -2,6 +2,34 @@ import moment from "moment";
 import { db, dbPool } from "../connect.js"; 
 import path from 'path';
 
+/**
+ * @swagger
+ * /admin/seminars:
+ *   post:
+ *     tags:
+ *       - Seminars
+ *     summary: Create a seminar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               date:
+ *                 type: string
+ *                 format: date
+ *               description:
+ *                 type: string
+ *             required:
+ *               - title
+ *               - date
+ *     responses:
+ *       201:
+ *         description: Seminar created
+ */
 
 export const getSeminars = async (req, res) => {
   try {
