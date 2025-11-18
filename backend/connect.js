@@ -8,7 +8,7 @@ export const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "1234",
-    database: "seminar"
+    database: process.env.NODE_ENV === "test" ? "seminar_test" : "seminar"
 });
 
 // Promisify the query method on the single connection

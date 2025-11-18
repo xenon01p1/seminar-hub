@@ -3,7 +3,6 @@ import express from "express";
 import { createRequire } from "module";
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import { swaggerSpec, swaggerUiMiddleware } from "./swagger.js";
 import swaggerUi from "swagger-ui-express";
 
 const require = createRequire(import.meta.url);
@@ -49,3 +48,5 @@ app.get('/me', verifyToken, (req, res) => {
 });
 
 app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+
+export default app;
