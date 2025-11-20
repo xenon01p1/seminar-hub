@@ -1,11 +1,21 @@
 import { db } from "../connect.js";
 import bcrypt from "bcrypt";
 import moment from "moment";
+import { logger } from "../utils/logger.js";
 
 export const getAdmins = (req, res) => {
     const getAdminsQuery = "SELECT * FROM admins";
+    const userId = req.user.id;
+    const username = req.user.username;
+    const role = req.user.role;
+
     db.query(getAdminsQuery, (err, data) => {
-        if (err) if (err) return res.status(500).json({ status: false, message: err.sqlMessage });
+        if (err) {
+            logger.error(`[${ userId } - ${ role }: ${ username } ] = DB Error on getAdmins`);
+            logger.error(`Error details: ${ err.sqlMessage }`);
+            return res.status(500).json({ status: false, message: err.sqlMessage });
+        }
+        logger.info(`[${ userId } - ${ role }: ${ username } ] = Successfully get admins data`);
         return res.status(200).json({ status: true, message: "Retrieving data successfull!", data: data });
     });
 } 
@@ -35,7 +45,12 @@ export const addAdmin = (req, res) => {
     ];
 
     db.query(getAdminsQuery, values, (err, data) => {
-        if (err) return res.status(500).json({ status: false, message: err.sqlMessage });
+        if (err){
+            logger.error(`[${ userId } - ${ role }: ${ username } ] = Error DB on addAdmin`);
+            logger.error(`Error details: ${ err.sqlMessage }`);
+            return res.status(500).json({ status: false, message: err.sqlMessage });
+        } 
+        logger.info(`[${ userId } - ${ role }: ${ username } ] = Successfully add admin`);
         return res.status(200).json({ status: true, message: "Inserting data successfull!" });
     });
 } 
@@ -71,6 +86,8 @@ export const editAdmin = (req, res) => {
 
     db.query(query, [updateData, id], (err, result) => {
         if (err) {
+            logger.error(`[${ userId } - ${ role }: ${ username } ] = Error DB on editAdmin`);
+            logger.error(`Error details: ${ err.sqlMessage }`);
             return res.status(500).json({ status: false, message: err.sqlMessage });
         }
 
@@ -78,6 +95,7 @@ export const editAdmin = (req, res) => {
             return res.status(404).json({ status: false, message: "Admin not found" });
         }
 
+        logger.info(`[${ userId } - ${ role }: ${ username } ] = Updated successfully`);
         return res.status(200).json({ status: true, message: "Admin updated successfully" });
     });
 };
@@ -90,7 +108,12 @@ export const deleteAdmin = (req, res) => {
 
     const deleteAdminQuery = "DELETE FROM admins WHERE id = ?";
     db.query(deleteAdminQuery, [ id ], (err, data) => {
-        if (err) return res.status(500).json({ status : false, message: err.sqlMessage });
+        if (err) {
+            logger.error(`[${ userId } - ${ role }: ${ username } ] = Error DB on deleteAdmin`);
+            logger.error(`Error details: ${ err.sqlMessage }`);
+            return res.status(500).json({ status : false, message: err.sqlMessage });
+        }
+        logger.info(`[${ userId } - ${ role }: ${ username } ] = successfully deleted admin`);
         return  res.status(200).json({ status: true, message: "Data has been deleted!" });
     });
 } 

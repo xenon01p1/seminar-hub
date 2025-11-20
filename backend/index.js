@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const swaggerFile = require("./swagger-output.json");
 // import multer from 'multer';
 
+import { logger } from "./utils/logger.js";
 import { login } from "./controllers/authController.js";
 import adminRoutes from "./routes/admin.routes.js";
 import userRoutes from "./routes/user.routes.js";
@@ -18,16 +19,11 @@ import { verifyToken } from "./middleware/auth.js";
 const app = express();
 
 // use swagger
-// app.use("/docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // to allow cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use((req, res, next) => {
-//     res.header("Access-Control-Allow-Credentials", true);
-//     next();
-// });
 app.use(
     cors({
         origin: [
@@ -47,6 +43,8 @@ app.get('/me', verifyToken, (req, res) => {
   res.json({ id: req.user.id, role: req.user.role, username: req.user.username });
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+logger.info("Starting Seminar Hub server...");
+
+app.listen(3000, () => logger.info("Server running on http://localhost:3000"));
 
 export default app;

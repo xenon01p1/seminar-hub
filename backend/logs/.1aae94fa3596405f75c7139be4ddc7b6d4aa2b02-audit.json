@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\.1aae94fa3596405f75c7139be4ddc7b6d4aa2b02-audit.json",
+    "files": [
+        {
+            "date": 1763629375439,
+            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-20.log",
+            "hash": "f542a9071e4af6f88257878c274c1118381670401e46cbfc1cbdb21dd68b0808"
+        }
+    ],
+    "hashType": "sha256"
+}
