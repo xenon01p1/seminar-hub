@@ -4,7 +4,7 @@ import { describe, test, beforeEach, expect } from "@jest/globals";
 import { db } from "../../connect.js";
 import bcrypt from "bcrypt";
 
-describe("POST /seminar/join-seminar/:seminarId (REAL Integration)", () => {
+describe("POST /user/join-seminar/:seminarId (REAL Integration)", () => {
 
   beforeEach(async () => {
     await db.query("DELETE FROM users");

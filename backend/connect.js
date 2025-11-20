@@ -27,8 +27,8 @@ if (process.env.NODE_ENV !== "test") {
 export const dbPool = mysql.createPool({
     host: "localhost",
     user: "root",
-    password: "",
-    database: "seminar",
+    password: "1234",
+    database: process.env.NODE_ENV === "test" ? "seminar_test" : "seminar",
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0

@@ -15,6 +15,9 @@ export const verifyToken = (req, res, next) => {
     console.log("Decoded JWT:", decoded);
     req.user = decoded; // { id, role, username }
     next();
+
+    // console.log("req.cookies:", req.cookies);
+    // console.log("req.headers.cookie:", req.headers.cookie);
   });
 };
 
