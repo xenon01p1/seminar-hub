@@ -1,6 +1,7 @@
 import moment from "moment";
 import { db, dbPool } from "../connect.js"; 
 import path from 'path';
+import { logger } from "../utils/logger.js";
 
 /**
  * @swagger
@@ -41,7 +42,11 @@ export const getSeminars = async (req, res) => {
 };
 
 export const getSeminarsJoinJoinedSeminars = async (req, res) => {
+  const userId = req.user.id;
+  const usernameOfLoggedUser = req.user.username;
+  const role = req.user.role;
   const { user_id } = req.params;
+
   if (!user_id || user_id.length === 0) {
     return res.status(400).json({ status: false, message: "Required 'user_id' field" });
   }
@@ -63,16 +68,24 @@ export const getSeminarsJoinJoinedSeminars = async (req, res) => {
 
     const data = await db.query(query, [user_id]);
 
-    return res.status(200).json({ status: true, message: "Retrieving data successful!", data })
+    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all seminars join joined data`);
+    return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
+
   } catch (error) {
-    console.error("Database Query Error:", error);
     const errorMessage = error.sqlMessage;
+
+    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all seminars join joined data`);
+    logger.error(`Error details: ${ errorMessage }`);
     return res.status(500).json({ status: false, message: errorMessage });
   }
 }
 
 
 export const addSeminar = async (req, res) => {
+  const userId = req.user.id;
+  const usernameOfLoggedUser = req.user.username;
+  const role = req.user.role;
+
   if (!req.file) {
     return res.status(400).json({ status: false, message: "img field (file upload) is required" });
   }
@@ -99,14 +112,22 @@ export const addSeminar = async (req, res) => {
 
     await db.query(addSeminarQuery, values);
 
+    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = added new seminar`);
     return res.status(200).json({ status: true, message: "Inserting data successful!" });
+
   } catch (err) {
+    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error inserting seminar data`);
+    logger.error(`Error details: ${ err.sqlMessage }`);
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
 
 export const editSeminar = async (req, res) => {
+  const userId = req.user.id;
+  const usernameOfLoggedUser = req.user.username;
+  const role = req.user.role;
   const { id } = req.params;
+
   if (!id || id.length === 0) {
     return res.status(400).json({ status: false, message: "Required 'id' field" });
   }
@@ -143,14 +164,22 @@ export const editSeminar = async (req, res) => {
       return res.status(404).json({ status: false, message: "Seminar data not found" });
     }
 
+    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = editted a seminar`);
     return res.status(200).json({ status: true, message: "Seminar updated successfully." });
+
   } catch (err) {
+    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error editing seminar data`);
+    logger.error(`Error details: ${ err.sqlMessage }`);
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
 
 export const deleteSeminar = async (req, res) => {
+    const userId = req.user.id;
+    const usernameOfLoggedUser = req.user.username;
+    const role = req.user.role;
     const { id } = req.params;
+
     if (!id || id.length === 0) {
         return res.status(400).json({ status: false, message: "Required 'id' field" });
     }
@@ -166,18 +195,20 @@ export const deleteSeminar = async (req, res) => {
 
         await connection.commit();
 
+        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = deleted a seminar`);
         return res.status(200).json({ status: true, message: "Seminar and related data deleted." });
     } catch (err) {
-        console.error("Original Transaction Error:", err); 
-        
         if (connection) {
             try {
                 await connection.rollback(); 
             } catch (rollbackErr) {
-                console.error("Rollback failed:", rollbackErr);
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Rollback seminar data failed`);
+                logger.error(`Rollback failed: ${ rollbackErr }`);
             }
         }
         
+        logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
+        logger.error(`Error details: ${ err.message }`);
         return res.status(500).json({ status: false, message: err.message });
     } finally {
         if (connection) {
@@ -187,21 +218,29 @@ export const deleteSeminar = async (req, res) => {
 };
 
 export const joinSeminar = async (req, res) => {
+  const userId = req.user.id;
+  const usernameOfLoggedUser = req.user.username;
+  const role = req.user.role;
+
   const { seminarId } = req.params;
   if (!seminarId || seminarId.length === 0) {
     return res.status(400).json({ status: false, message: "Required 'seminarId' field" });
   }
 
-  const userId = req.user.id;
-
   try {
     const insertQuery = "INSERT INTO joined_users (seminar_id, user_id, joined_at) VALUES (?, ?, ?)";
     await db.query(insertQuery, [seminarId, userId, moment().format("YYYY-MM-DD HH:mm:ss")]);
+
+    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = joined a seminar`);
     return res.status(200).json({ status: true, message: "Seminar joined successfully." });
+
   } catch (err) {
     if (err.code === "ER_DUP_ENTRY") {
       return res.status(400).json({ status: false, message: "User already joined this seminar." });
     }
+
+    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
+    logger.error(`Error details: ${ err.message }`);
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 

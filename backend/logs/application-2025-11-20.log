@@ -23,3 +23,90 @@
 {"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-20T10:17:11.936Z"}
 {"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-20T10:17:11.957Z"}
 {"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-20T10:17:13.630Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-21T03:43:52.201Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-21T03:43:52.212Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-21T03:45:18.215Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-21T03:45:18.230Z"}
+{"level":"info","message":"[7 - users: test4 ] = Logged in","timestamp":"2025-11-21T03:45:40.631Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-21T03:48:46.517Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-21T03:48:46.528Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:48:46.685Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:48:46.789Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:48:49.429Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:48:49.439Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched latest seminars joined data","timestamp":"2025-11-21T03:48:49.447Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched total seminars joined data","timestamp":"2025-11-21T03:48:49.451Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:49:00.413Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:49:00.427Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched latest seminars joined data","timestamp":"2025-11-21T03:49:00.437Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched total seminars joined data","timestamp":"2025-11-21T03:49:00.441Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:52:07.676Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:52:07.714Z"}
+{"level":"error","message":"[7 - users: test4 ] = Token verified","timestamp":"2025-11-21T03:52:07.748Z"}
+{"level":"info","message":"[7 - users: test4 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:52:07.760Z"}
+{"level":"info","message":"[8 - users: test50 ] = Logged in","timestamp":"2025-11-21T03:53:28.244Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:28.311Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:53:28.319Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:33.200Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:53:33.215Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:34.558Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:34.568Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched latest seminars joined data","timestamp":"2025-11-21T03:53:34.595Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched total seminars joined data","timestamp":"2025-11-21T03:53:34.598Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:47.358Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:47.427Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched total seminars joined data","timestamp":"2025-11-21T03:53:47.486Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched latest seminars joined data","timestamp":"2025-11-21T03:53:47.522Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:53:49.412Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:53:49.418Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:54:09.461Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:54:09.564Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:54:22.434Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:54:22.445Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:54:32.648Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:54:32.902Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:54:35.663Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:54:35.670Z"}
+{"level":"error","message":"[8 - users: test50 ] = Token verified","timestamp":"2025-11-21T03:54:54.479Z"}
+{"level":"info","message":"[8 - users: test50 ] = fetched all seminars join joined data","timestamp":"2025-11-21T03:54:54.493Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-21T03:59:57.462Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-21T03:59:57.472Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Logged in","timestamp":"2025-11-21T04:00:35.321Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:00:35.411Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:00:35.424Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:00:51.061Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:00:51.082Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:00:58.016Z"}
+{"level":"info","message":"[1 - admins: test1 ] = successfully deleted admin","timestamp":"2025-11-21T04:00:58.071Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:00:58.091Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:00:58.103Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:01.162Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:01:01.183Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:03.535Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:01:03.540Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:41.291Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully add admin","timestamp":"2025-11-21T04:01:41.472Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:41.481Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:01:41.486Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:47.278Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:01:47.331Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:53.821Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Updated successfully","timestamp":"2025-11-21T04:01:54.005Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:01:54.016Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:01:54.019Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:09.618Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Updated successfully","timestamp":"2025-11-21T04:02:09.661Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:09.677Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-21T04:02:09.683Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:14.085Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched total attendees data","timestamp":"2025-11-21T04:02:14.090Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:14.123Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:14.135Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched total seminars data","timestamp":"2025-11-21T04:02:14.140Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched total users data","timestamp":"2025-11-21T04:02:14.142Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:24.621Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched all users data","timestamp":"2025-11-21T04:02:24.624Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:34.604Z"}
+{"level":"info","message":"[1 - admins: test1 ] = edited seminars data","timestamp":"2025-11-21T04:02:34.652Z"}
+{"level":"error","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-21T04:02:34.663Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched all users data","timestamp":"2025-11-21T04:02:34.666Z"}

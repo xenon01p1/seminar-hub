@@ -3,11 +3,9 @@ import bcrypt from "bcrypt";
 import { db } from "../connect.js";
 import moment from "moment";
 import 'dotenv/config';
+import { logger } from "../utils/logger.js";
 
 export const login = (req, res) => {
-  console.log('Login function reached!');
-  console.log(req.body);
-  
   const { username, password, role } = req.body;
   let searchUser;
 
@@ -23,7 +21,8 @@ export const login = (req, res) => {
   db.query(searchUser, [username], (err, data) => {
     // ERROR AND DATA VALIDATION
     if (err) {
-      console.error(err);
+      logger.error(`[${ userId } - ${ role }: ${ username } ] = Error search user DB on login`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
       return res.status(500).json({ status: false, message: "Database error." });
     }
     if (!data.length) return res.status(404).json({ status: false, message: "User not found." });
@@ -42,6 +41,7 @@ export const login = (req, res) => {
       process.env.JWT_SECRET
     );
 
+    logger.info(`[${ userData.id } - ${ role }: ${ userData.username } ] = Logged in`);
     res.cookie("accessToken", token, { httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 2 });
     return res.json({
       status: true,
@@ -67,9 +67,13 @@ export const registerUser = (req, res) => {
   const searchUserExist = "SELECT * FROM users WHERE username = ?";
 
   db.query(searchUserExist, [username], (err, data) => {
-    if (err) return res.status(500).json({ status: false, message: err });
+    if (err) {
+      logger.error(`Error DB register: ${ err.sqlMessage }`);
+      return res.status(500).json({ status: false, message: err });
+    }
     if (data.length) return res.status(409).json({ status: false, message: "User already exists." });
 
+    const userData = data[0];
     const salt = bcrypt.genSaltSync(10);
     const hashedPass = bcrypt.hashSync(password, salt);
 
@@ -84,15 +88,22 @@ export const registerUser = (req, res) => {
 
     db.query(insertUser, [values], (err) => {
       if (err) {
+        logger.error(`Error DB register: ${ err.sqlMessage }`);
         return res.status(500).json({ status: false, message: err });
       }
 
+      logger.info(`[${ userData.id } - users: ${ username } ] = is registered`);
       return res.status(200).json({ status: true, message: "User has been successfully registered!" });
     });
   });
 };
 
 export const logout = (req, res) => {
+  const userId = req.user.id;
+  const usernameOfLoggedUser = req.user.username;
+  const role = req.user.role;
+
+  logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = is logged out`);
   res.clearCookie("accessToken", {
     httpOnly: true,
     secure: true
