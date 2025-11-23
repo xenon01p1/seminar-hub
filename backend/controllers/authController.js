@@ -21,13 +21,20 @@ export const login = (req, res) => {
   db.query(searchUser, [username], (err, data) => {
     // ERROR AND DATA VALIDATION
     if (err) {
-      logger.error(`[${ userId } - ${ role }: ${ username } ] = Error search user DB on login`);
-      logger.error(`Error details: ${ err.sqlMessage }`);
+      if (process.env.NODE_ENV !== "test") {
+        logger.error(`Error details: ${ err.sqlMessage }`);
+      };
+
       return res.status(500).json({ status: false, message: "Database error." });
     }
     if (!data.length) return res.status(404).json({ status: false, message: "User not found." });
 
     const userData = data[0];
+
+    // Reject if user is deleted
+    if(userData.is_deleted) {
+      return res.status(404).json({ status: false, message: "User not found." });
+    }
 
     // COMPARE PASSWORD
     const isPasswordValid = bcrypt.compareSync(String(password), userData.password); // Explicitly cast password to a string
@@ -41,7 +48,10 @@ export const login = (req, res) => {
       process.env.JWT_SECRET
     );
 
-    logger.info(`[${ userData.id } - ${ role }: ${ userData.username } ] = Logged in`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userData.id } - ${ role }: ${ userData.username } ] = Logged in`);
+    };
+    
     res.cookie("accessToken", token, { httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 2 });
     return res.json({
       status: true,
@@ -88,22 +98,31 @@ export const registerUser = (req, res) => {
 
     db.query(insertUser, [values], (err) => {
       if (err) {
-        logger.error(`Error DB register: ${ err.sqlMessage }`);
+        if (process.env.NODE_ENV !== "test") {
+          logger.error(`Error DB register: ${ err.sqlMessage }`);
+        };
+
         return res.status(500).json({ status: false, message: err });
       }
 
-      logger.info(`[${ userData.id } - users: ${ username } ] = is registered`);
+      if (process.env.NODE_ENV !== "test") {
+        logger.info(`[${ userData.id } - users: ${ username } ] = is registered`);
+      };
+
       return res.status(200).json({ status: true, message: "User has been successfully registered!" });
     });
   });
 };
 
 export const logout = (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  if (process.env.NODE_ENV !== "test") {
+    const userId = req.user.id;
+    const usernameOfLoggedUser = req.user.username;
+    const role = req.user.role;
 
-  logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = is logged out`);
+    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = is logged out`);
+  };
+
   res.clearCookie("accessToken", {
     httpOnly: true,
     secure: true

@@ -42,9 +42,14 @@ export const getSeminars = async (req, res) => {
 };
 
 export const getSeminarsJoinJoinedSeminars = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
+
   const { user_id } = req.params;
 
   if (!user_id || user_id.length === 0) {
@@ -68,23 +73,33 @@ export const getSeminarsJoinJoinedSeminars = async (req, res) => {
 
     const data = await db.query(query, [user_id]);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all seminars join joined data`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all seminars join joined data`);
+    }
+
     return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
 
   } catch (error) {
     const errorMessage = error.sqlMessage;
 
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all seminars join joined data`);
-    logger.error(`Error details: ${ errorMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all seminars join joined data`);
+      logger.error(`Error details: ${ errorMessage }`);
+    }
+
     return res.status(500).json({ status: false, message: errorMessage });
   }
 }
 
 
 export const addSeminar = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
   if (!req.file) {
     return res.status(400).json({ status: false, message: "img field (file upload) is required" });
@@ -112,20 +127,31 @@ export const addSeminar = async (req, res) => {
 
     await db.query(addSeminarQuery, values);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = added new seminar`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = added new seminar`);
+    };
+
     return res.status(200).json({ status: true, message: "Inserting data successful!" });
 
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error inserting seminar data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error inserting seminar data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    };
+
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
 
 export const editSeminar = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
+  
   const { id } = req.params;
 
   if (!id || id.length === 0) {
@@ -164,20 +190,31 @@ export const editSeminar = async (req, res) => {
       return res.status(404).json({ status: false, message: "Seminar data not found" });
     }
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = editted a seminar`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = editted a seminar`);
+    }
+
     return res.status(200).json({ status: true, message: "Seminar updated successfully." });
 
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error editing seminar data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error editing seminar data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    }
+
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
 
 export const deleteSeminar = async (req, res) => {
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+      userId = req.user.id;
+      usernameOfLoggedUser = req.user.username;
+      role = req.user.role;
+    }
+  
     const { id } = req.params;
 
     if (!id || id.length === 0) {
@@ -195,20 +232,28 @@ export const deleteSeminar = async (req, res) => {
 
         await connection.commit();
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = deleted a seminar`);
+        if (process.env.NODE_ENV !== "test") {
+          logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = deleted a seminar`);
+        }
+
         return res.status(200).json({ status: true, message: "Seminar and related data deleted." });
     } catch (err) {
         if (connection) {
             try {
                 await connection.rollback(); 
             } catch (rollbackErr) {
+              if (process.env.NODE_ENV !== "test") {
                 logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Rollback seminar data failed`);
                 logger.error(`Rollback failed: ${ rollbackErr }`);
+              }
             }
         }
         
-        logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
-        logger.error(`Error details: ${ err.message }`);
+        if (process.env.NODE_ENV !== "test") {
+          logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
+          logger.error(`Error details: ${ err.message }`);
+        }
+
         return res.status(500).json({ status: false, message: err.message });
     } finally {
         if (connection) {
@@ -218,9 +263,13 @@ export const deleteSeminar = async (req, res) => {
 };
 
 export const joinSeminar = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+  userId = req.user.id;
+
+  if (process.env.NODE_ENV !== "test") {
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
   const { seminarId } = req.params;
   if (!seminarId || seminarId.length === 0) {
@@ -231,7 +280,10 @@ export const joinSeminar = async (req, res) => {
     const insertQuery = "INSERT INTO joined_users (seminar_id, user_id, joined_at) VALUES (?, ?, ?)";
     await db.query(insertQuery, [seminarId, userId, moment().format("YYYY-MM-DD HH:mm:ss")]);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = joined a seminar`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = joined a seminar`);
+    }
+
     return res.status(200).json({ status: true, message: "Seminar joined successfully." });
 
   } catch (err) {
@@ -239,8 +291,11 @@ export const joinSeminar = async (req, res) => {
       return res.status(400).json({ status: false, message: "User already joined this seminar." });
     }
 
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
-    logger.error(`Error details: ${ err.message }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = delete seminar data failed`);
+      logger.error(`Error details: ${ err.message }`);
+    }
+
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 

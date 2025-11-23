@@ -1,0 +1,68 @@
+{"level":"info","message":"[1 - users: alice ] = Logged in","timestamp":"2025-11-21T08:03:49.364Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:03:49.564Z"}
+{"level":"error","message":"Error DB register: undefined","timestamp":"2025-11-21T08:03:49.579Z"}
+{"level":"error","message":"Error DB register: undefined","timestamp":"2025-11-21T08:03:49.587Z"}
+{"level":"info","message":"[445 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:51.241Z"}
+{"level":"error","message":"[445 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:51.285Z"}
+{"level":"info","message":"[446 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:52.188Z"}
+{"level":"error","message":"[446 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:52.227Z"}
+{"level":"info","message":"[447 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:52.843Z"}
+{"level":"error","message":"[447 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:52.859Z"}
+{"level":"info","message":"[447 - admins: test_admin ] = added new seminar","timestamp":"2025-11-21T08:03:52.897Z"}
+{"level":"info","message":"[448 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:53.381Z"}
+{"level":"info","message":"[99 - users: test_user2 ] = Logged in","timestamp":"2025-11-21T08:03:53.881Z"}
+{"level":"error","message":"[99 - users: test_user2 ] = Token verified","timestamp":"2025-11-21T08:03:53.893Z"}
+{"level":"info","message":"[99 - users: test_user2 ] = fetched all seminars join joined data","timestamp":"2025-11-21T08:03:53.901Z"}
+{"level":"info","message":"[450 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:54.393Z"}
+{"level":"info","message":"[451 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:54.857Z"}
+{"level":"error","message":"[451 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:54.867Z"}
+{"level":"info","message":"[452 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:55.347Z"}
+{"level":"error","message":"[452 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:55.357Z"}
+{"level":"info","message":"[453 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:55.809Z"}
+{"level":"error","message":"[453 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:55.822Z"}
+{"level":"info","message":"[453 - admins: test_admin ] = editted a seminar","timestamp":"2025-11-21T08:03:55.853Z"}
+{"level":"info","message":"[454 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:56.362Z"}
+{"level":"info","message":"[455 - admins: test_admin ] = Logged in","timestamp":"2025-11-21T08:03:56.833Z"}
+{"level":"error","message":"[455 - admins: test_admin ] = Token verified","timestamp":"2025-11-21T08:03:56.843Z"}
+{"level":"info","message":"[455 - admins: test_admin ] = deleted a seminar","timestamp":"2025-11-21T08:03:56.849Z"}
+{"level":"info","message":"[634 - users: test_user ] = Logged in","timestamp":"2025-11-21T08:03:58.289Z"}
+{"level":"info","message":"[638 - users: test_user ] = Logged in","timestamp":"2025-11-21T08:03:59.993Z"}
+{"level":"error","message":"[638 - users: test_user ] = Token verified","timestamp":"2025-11-21T08:04:00.015Z"}
+{"level":"info","message":"[638 - users: test_user ] = joined a seminar","timestamp":"2025-11-21T08:04:00.043Z"}
+{"level":"info","message":"[639 - users: test_user ] = Logged in","timestamp":"2025-11-21T08:04:00.428Z"}
+{"level":"error","message":"[639 - users: test_user ] = Token verified","timestamp":"2025-11-21T08:04:00.439Z"}
+{"level":"info","message":"[639 - users: test_user ] = joined a seminar","timestamp":"2025-11-21T08:04:00.464Z"}
+{"level":"error","message":"[639 - users: test_user ] = Token verified","timestamp":"2025-11-21T08:04:00.475Z"}
+{"level":"error","message":"[1 - admins: admin ] = DB Error on getAdmins","timestamp":"2025-11-21T08:04:00.878Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:00.883Z"}
+{"level":"info","message":"[1 - admins: admin ] = Successfully get admins data","timestamp":"2025-11-21T08:04:00.890Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error DB on addAdmin","timestamp":"2025-11-21T08:04:01.014Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:01.015Z"}
+{"level":"info","message":"[1 - admins: admin ] = Successfully add admin","timestamp":"2025-11-21T08:04:01.127Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error DB on editAdmin","timestamp":"2025-11-21T08:04:01.247Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:01.248Z"}
+{"level":"info","message":"[1 - admins: admin ] = Updated successfully","timestamp":"2025-11-21T08:04:01.362Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error fetching all seminars join joined data","timestamp":"2025-11-21T08:04:01.786Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:01.792Z"}
+{"level":"info","message":"[1 - admins: admin ] = fetched all seminars join joined data","timestamp":"2025-11-21T08:04:01.796Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error inserting seminar data","timestamp":"2025-11-21T08:04:01.803Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:01.804Z"}
+{"level":"info","message":"[1 - admins: admin ] = added new seminar","timestamp":"2025-11-21T08:04:01.810Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error editing seminar data","timestamp":"2025-11-21T08:04:01.817Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:01.818Z"}
+{"level":"info","message":"[1 - admins: admin ] = editted a seminar","timestamp":"2025-11-21T08:04:01.824Z"}
+{"level":"error","message":"[1 - admins: admin ] = delete seminar data failed","timestamp":"2025-11-21T08:04:01.831Z"}
+{"level":"error","message":"Error details: awai is not defined","timestamp":"2025-11-21T08:04:01.832Z"}
+{"level":"info","message":"[1 - admins: admin ] = deleted a seminar","timestamp":"2025-11-21T08:04:01.836Z"}
+{"level":"error","message":"[1 - undefined: undefined ] = delete seminar data failed","timestamp":"2025-11-21T08:04:01.854Z"}
+{"level":"error","message":"Error details: Fake error","timestamp":"2025-11-21T08:04:01.854Z"}
+{"level":"info","message":"[1 - undefined: undefined ] = joined a seminar","timestamp":"2025-11-21T08:04:01.860Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error fetching all users data","timestamp":"2025-11-21T08:04:02.257Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:02.268Z"}
+{"level":"info","message":"[1 - admins: admin ] = fetched all users data","timestamp":"2025-11-21T08:04:02.277Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error inserting user data","timestamp":"2025-11-21T08:04:02.286Z"}
+{"level":"error","message":"Error details: Error insert to db","timestamp":"2025-11-21T08:04:02.287Z"}
+{"level":"info","message":"[1 - admins: admin ] = add new user data","timestamp":"2025-11-21T08:04:02.291Z"}
+{"level":"error","message":"[1 - admins: admin ] = Error editing user data","timestamp":"2025-11-21T08:04:02.302Z"}
+{"level":"error","message":"Error details: undefined","timestamp":"2025-11-21T08:04:02.304Z"}
+{"level":"info","message":"[1 - admins: admin ] = edited seminars data","timestamp":"2025-11-21T08:04:02.312Z"}

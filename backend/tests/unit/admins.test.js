@@ -34,7 +34,7 @@ afterAll(() => {
 
 describe('admins.getAdmins', () => {
     test('Return Error', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"}};
         const res = createRes();
 
         const mockError = new Error('Error DB');
@@ -51,7 +51,7 @@ describe('admins.getAdmins', () => {
     });
 
     test('Successfully return data', async() => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         const mockData = [
@@ -82,13 +82,16 @@ describe('admins.getAdmins', () => {
 
 describe('admins.addAdmin', () => {
     test('One of required parameter is empty error', async() => {
-        const req = { body: {
-            username: '',
-            password: 'secret',
-            name: 'test',
-            email: 'test@gmail.com',
-            phone_number: '08111111'
-        }};
+        const req = { 
+            user: { id: 1, username: "admin", role: "admins"},
+            body: {
+                username: '',
+                password: 'secret',
+                name: 'test',
+                email: 'test@gmail.com',
+                phone_number: '08111111'
+            }
+        };
         const res = createRes();
 
         await addAdmin(req, res);
@@ -101,13 +104,16 @@ describe('admins.addAdmin', () => {
     });
 
     test('Error DB add', async() => {
-        const req = { body: {
-            username: 'test',
-            password: 'secret',
-            name: 'test dummy',
-            email: 'test@gmail.com',
-            phone_number: '08111111'
-        }};
+        const req = { 
+            user: { id: 1, username: "admin", role: "admins"},
+            body: {
+                username: 'test',
+                password: 'secret',
+                name: 'test dummy',
+                email: 'test@gmail.com',
+                phone_number: '08111111'
+            }
+        };
         const res = createRes();
 
         const mockError = new Error('Error DB');
@@ -124,13 +130,16 @@ describe('admins.addAdmin', () => {
     });
 
     test('Successfully add data', async() => {
-        const req = { body: {
-            username: 'test',
-            password: 'secret',
-            name: 'test dummy',
-            email: 'test@gmail.com',
-            phone_number: '08111111'
-        }};
+        const req = { 
+            user: { id: 1, username: "admin", role: "admins"},
+            body: {
+                username: 'test',
+                password: 'secret',
+                name: 'test dummy',
+                email: 'test@gmail.com',
+                phone_number: '08111111'
+            }
+        };
         const res = createRes();
 
         db.query.mockImplementationOnce((sql, params, cb) => cb(null, req));
@@ -148,6 +157,7 @@ describe('admins.addAdmin', () => {
 describe('admins.editAdmin', () => {
     test('Missing ID field error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: {}, 
             body: {
                 username: 'newUser',
@@ -170,6 +180,7 @@ describe('admins.editAdmin', () => {
 
     test('Missing required field error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1}, 
             body: { }
         };
@@ -186,6 +197,7 @@ describe('admins.editAdmin', () => {
 
     test('Update DB error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1}, 
             body: { 
                 username: 'newUser',
@@ -212,6 +224,7 @@ describe('admins.editAdmin', () => {
 
     test('No admin found error', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 99 }, 
             body: { username: 'newUser' },
         };
@@ -232,6 +245,7 @@ describe('admins.editAdmin', () => {
 
     test('Successful update DB', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1}, 
             body: { 
                 username: 'newUser',

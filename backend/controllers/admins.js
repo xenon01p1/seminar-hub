@@ -5,17 +5,28 @@ import { logger } from "../utils/logger.js";
 
 export const getAdmins = (req, res) => {
     const getAdminsQuery = "SELECT * FROM admins";
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
 
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
+  
     db.query(getAdminsQuery, (err, data) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = DB Error on getAdmins`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = DB Error on getAdmins`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            };
+
             return res.status(500).json({ status: false, message: err.sqlMessage });
         }
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Successfully get admins data`);
+
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Successfully get admins data`);
+        };
+
         return res.status(200).json({ status: true, message: "Retrieving data successfull!", data: data });
     });
 } 
@@ -24,9 +35,14 @@ export const addAdmin = (req, res) => {
     console.log(req.body);
     const { username , password , name , email , phone_number } = req.body;
     const requiredFields = ['username', 'password', 'name', 'email', 'phone_number'];
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
 
     for (const field of requiredFields) {
         if (!req.body[field]) {
@@ -49,20 +65,31 @@ export const addAdmin = (req, res) => {
 
     db.query(getAdminsQuery, values, (err, data) => {
         if (err){
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on addAdmin`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on addAdmin`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            };
+
             return res.status(500).json({ status: false, message: err.sqlMessage });
         } 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Successfully add admin`);
+
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Successfully add admin`);
+        };
+
         return res.status(200).json({ status: true, message: "Inserting data successfull!" });
     });
 } 
 
 export const editAdmin = (req, res) => {
     const { id } = req.params;
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
 
     if (!id || id.length === 0) {
         return res.status(400).json({ status: false, message: `id field is required` });
@@ -93,8 +120,11 @@ export const editAdmin = (req, res) => {
 
     db.query(query, [updateData, id], (err, result) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on editAdmin`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on editAdmin`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            };
+
             return res.status(500).json({ status: false, message: err.sqlMessage });
         }
 
@@ -102,16 +132,23 @@ export const editAdmin = (req, res) => {
             return res.status(404).json({ status: false, message: "Admin not found" });
         }
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Updated successfully`);
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Updated successfully`);
+        };
+
         return res.status(200).json({ status: true, message: "Admin updated successfully" });
     });
 };
 
 export const deleteAdmin = (req, res) => {
     const { id } = req.params;
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
 
     if (!id || id.length === 0) {
         return res.status(400).json({ status: false, message: `id field is required` });
@@ -120,11 +157,18 @@ export const deleteAdmin = (req, res) => {
     const deleteAdminQuery = "DELETE FROM admins WHERE id = ?";
     db.query(deleteAdminQuery, [ id ], (err, data) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on deleteAdmin`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error DB on deleteAdmin`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            };
+
             return res.status(500).json({ status : false, message: err.sqlMessage });
         }
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = successfully deleted admin`);
+
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = successfully deleted admin`);
+        };
+
         return  res.status(200).json({ status: true, message: "Data has been deleted!" });
     });
 } 

@@ -10,9 +10,13 @@ db.rollback = util.promisify(db.rollback).bind(db);
 // DASHBOARD ADMIN
 
 export const totalSeminars = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
   try {
     const data = await db.query(`
@@ -24,7 +28,9 @@ export const totalSeminars = async (req, res) => {
       LIMIT 5
     `);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total seminars data`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total seminars data`);
+    }
 
     return res.status(200).json({
       status: true,
@@ -32,8 +38,10 @@ export const totalSeminars = async (req, res) => {
       data 
     });
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total seminars data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total seminars data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    };
 
     return res.status(500).json({
       status: false,
@@ -43,9 +51,13 @@ export const totalSeminars = async (req, res) => {
 };
 
 export const totalUsers = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
   try {
     const data = await db.query(`
@@ -57,7 +69,9 @@ export const totalUsers = async (req, res) => {
       LIMIT 5
     `);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total users data`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total users data`);
+    };
 
     return res.status(200).json({
       status: true,
@@ -65,17 +79,24 @@ export const totalUsers = async (req, res) => {
       data 
     });
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total users data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total users data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    };
+
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
 
 
 export const totalAttendees = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
   try {
     const data = await db.query(`
@@ -87,7 +108,9 @@ export const totalAttendees = async (req, res) => {
       LIMIT 5
     `);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total attendees data`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total attendees data`);
+    };
 
     return res.status(200).json({
       status: true,
@@ -95,8 +118,11 @@ export const totalAttendees = async (req, res) => {
       data // return full array
     });
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total attendees data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total attendees data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    };
+
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
 };
@@ -104,9 +130,13 @@ export const totalAttendees = async (req, res) => {
 
 // DASHBOARD USER
 export const totalSeminarsJoined = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
 
     const { user_id } = req.params;
     if (!user_id || user_id.length === 0) return res.status(400).json({ status: false, message: "Required 'user_id' field." });
@@ -118,19 +148,30 @@ export const totalSeminarsJoined = async (req, res) => {
         );
         const total = data[0].total_seminars_joined; 
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total seminars joined data`);
+        if (process.env.NODE_ENV !== "test") {
+          logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched total seminars joined data`);
+        };
+
         return res.status(200).json({ status: true, message: "Retrieving data successful!", data: total }); 
     } catch(err) {
-      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total seminars joined data`);
-      logger.error(`Error details: ${ err.sqlMessage }`);
+      if (process.env.NODE_ENV !== "test") {
+        logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching total seminars joined data`);
+        logger.error(`Error details: ${ err.sqlMessage }`);
+      };
+
       return res.status(500).json({ status: false, message: err.sqlMessage });
     }
 }
 
 export const latestSeminar = async (req, res) => {
-  const userId = req.user.id;
-  const usernameOfLoggedUser = req.user.username;
-  const role = req.user.role;
+  let userId, usernameOfLoggedUser, role;
+
+  if (process.env.NODE_ENV !== "test") {
+    userId = req.user.id;
+    usernameOfLoggedUser = req.user.username;
+    role = req.user.role;
+  }
+  
   const { user_id } = req.params;
 
   if (!user_id || user_id.length === 0) return res.status(400).json({ status: false, message: "Required 'user_id' field." });
@@ -153,7 +194,9 @@ export const latestSeminar = async (req, res) => {
       LIMIT 5
     `, [ user_id ]);
 
-    logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched latest seminars joined data`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched latest seminars joined data`);
+    }
 
     return res.status(200).json({
       status: true,
@@ -161,8 +204,11 @@ export const latestSeminar = async (req, res) => {
       data 
     });
   } catch (err) {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching latest seminars data`);
-    logger.error(`Error details: ${ err.sqlMessage }`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching latest seminars data`);
+      logger.error(`Error details: ${ err.sqlMessage }`);
+    };
+    
     return res.status(500).json({
       status: false,
       message: err.sqlMessage

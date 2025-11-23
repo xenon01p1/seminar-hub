@@ -64,7 +64,7 @@ describe("Seminar CRUD Real Integration", () => {
                     link: "",
                     pass_code: "",
                     start_at: ""
-                })
+                });
 
             expect(res.status).toBe(400);
             expect(res.body.status).toBe(false);

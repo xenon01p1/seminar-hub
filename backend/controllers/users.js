@@ -5,28 +5,42 @@ import bcrypt from "bcrypt";
 import { logger } from "../utils/logger.js";
 
 export const getUsers = (req, res) => {
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
 
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
+    
     const getUserQuery = "SELECT * FROM users WHERE is_deleted = 0"; 
     
     db.query(getUserQuery, (err, data) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all users data`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all users data`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            }
+
             return res.status(500).json({ status: false, message: err.sqlMessage });
         }
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all users data`);
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all users data`);
+        }
         return res.status(200).json({ status: true, message: "Retrieving data successfull!", data: data });
     })
 };
 
 export const addUser = (req, res) => {
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
+  
     const requiredFields = ['username', 'password', 'email'];
 
     for (const field of requiredFields) {
@@ -50,21 +64,31 @@ export const addUser = (req, res) => {
 
     db.query(addUserQuery, values, (err, data) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error inserting user data`);
-            logger.error(`Error details: ${ err.sqlMessage }`);
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error inserting user data`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            }
+
             return res.status(500).json({ status: false, message: err.sqlMessage });
         }
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = add new user data`);
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = add new user data`);
+        }
         return res.status(200).json({ status: true, message: "Inserting data successfull!" });
     });
 };
 
 export const editUser = (req, res) => {
     // get param data
-    const userId = req.user.id;
-    const usernameOfLoggedUser = req.user.username;
-    const role = req.user.role;
+    let userId, usernameOfLoggedUser, role;
+
+    if (process.env.NODE_ENV !== "test") {
+        userId = req.user.id;
+        usernameOfLoggedUser = req.user.username;
+        role = req.user.role;
+    }
+  
     const { id } = req.params;
 
     if (!id || id.length === 0) return res.status(400).json({ status: false, message: `id field is required` });
@@ -91,8 +115,11 @@ export const editUser = (req, res) => {
     const editUserQuery = "UPDATE users SET ? WHERE id = ?";
     db.query(editUserQuery, [ updateData, id ], (err, data) => {
         if (err) {
-            logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error editing user data`);
-            logger.error(`Error details: ${ err.sqlMessage }`)
+            if (process.env.NODE_ENV !== "test") {
+                logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error editing user data`);
+                logger.error(`Error details: ${ err.sqlMessage }`);
+            };
+
             return res.status(500).json({ status: false, message: err.sqlMessage  });
         }
 
@@ -100,7 +127,10 @@ export const editUser = (req, res) => {
             return res.status(404).json({ status: false, message: "User not found" });
         }
 
-        logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = edited seminars data`);
+        if (process.env.NODE_ENV !== "test") {
+            logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = edited seminars data`);
+        }
+        
         return res.status(200).json({ status: true, message: "User updated successfully" });
     });
 }

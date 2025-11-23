@@ -36,7 +36,7 @@ afterAll(() => {
 
 describe('users.getUsers', () => {
     test('Return error data', async() => {
-        const req = { };
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         
         const mockError = new Error('Error get db');
@@ -53,7 +53,7 @@ describe('users.getUsers', () => {
     });
 
     test('Successful fetch user data', async() => {
-        const req = { };
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const fakeUser = [
             {
@@ -79,11 +79,14 @@ describe('users.getUsers', () => {
 
 describe('users.addUser', () => {
   test('Missing required field error', async() => {
-    const req = { body: {
-      username: "",
-      password: "secret",
-      email: "test@gmail.com"
-    }};
+    const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
+      body: {
+        username: "",
+        password: "secret",
+        email: "test@gmail.com"
+      }
+    };
     const res = createRes();
 
     await addUser(req, res);
@@ -96,11 +99,14 @@ describe('users.addUser', () => {
   });
 
   test('Insert data to DB error', async() => {
-    const req = { body: {
-      username: "test",
-      password: "secret",
-      email: "test@gmail.com"
-    }};
+    const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
+      body: {
+        username: "test",
+        password: "secret",
+        email: "test@gmail.com"
+      }
+    };
     const res = createRes();
 
     const mockError = new Error('Error insert to db');
@@ -118,11 +124,14 @@ describe('users.addUser', () => {
   });
 
   test('Successfully insert user', async() => {
-    const req = { body: {
-      username: "test",
-      password: "secret",
-      email: "test@gmail.com"
-    }};
+    const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
+      body: {
+        username: "test",
+        password: "secret",
+        email: "test@gmail.com"
+      }
+    };
     const res = createRes();
 
     db.query.mockImplementationOnce((sql, params, cb) => cb(null, {}));
@@ -140,6 +149,7 @@ describe('users.addUser', () => {
 describe('users.editUser', () => {
   test('Missing ID field error', async() => {
     const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
       params: {},
       body: {
         username: "test",
@@ -160,6 +170,7 @@ describe('users.editUser', () => {
 
   test('No required fields error', async() => {
     const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
       params: { id: 1 },
       body: { }
     };
@@ -176,6 +187,7 @@ describe('users.editUser', () => {
 
   test('DB update error', async() => {
     const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
       params: { id: 1 },
       body: {
         username: "test",
@@ -200,6 +212,7 @@ describe('users.editUser', () => {
 
   test('User not found error', async() => {
     const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
       params: { id: 1 },
       body: {
         username: "test",
@@ -222,6 +235,7 @@ describe('users.editUser', () => {
 
   test('Success update data', async() => {
     const req = { 
+      user: { id: 1, username: "admin", role: "admins"},
       params: { id: 1 },
       body: {
         username: "test",

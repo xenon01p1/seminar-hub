@@ -30,7 +30,7 @@ function createRes() {
 describe('dashboard.totalSeminars', () => {
     
     test('Catch fetch error', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const mockError = new Error('Error DB fetch');
 
@@ -46,7 +46,7 @@ describe('dashboard.totalSeminars', () => {
     });
 
     test('Successfully get data', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         db.query.mockResolvedValueOnce({});
@@ -65,7 +65,7 @@ describe('dashboard.totalSeminars', () => {
 describe('dashboard.totalUsers', () => {
     
     test('Catch fetch error', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const mockError = new Error('Error DB fetch');
 
@@ -81,7 +81,7 @@ describe('dashboard.totalUsers', () => {
     });
 
     test('Successfully get data', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         db.query.mockResolvedValueOnce({});
@@ -100,7 +100,7 @@ describe('dashboard.totalUsers', () => {
 describe('dashboard.totalAttendees', () => {
     
     test('Catch fetch error', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const mockError = new Error('Error DB fetch');
 
@@ -116,7 +116,7 @@ describe('dashboard.totalAttendees', () => {
     });
 
     test('Successfully get data', async () => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         db.query.mockResolvedValueOnce({});
@@ -135,6 +135,7 @@ describe('dashboard.totalAttendees', () => {
 describe('dashboard.totalSeminarsJoined', () => {
     test('Missing user id error', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { user_id: null},
         };
         const res = createRes();
@@ -150,6 +151,7 @@ describe('dashboard.totalSeminarsJoined', () => {
     
     test('Catch fetch error', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { user_id: 1},
         };
         const res = createRes();
@@ -168,6 +170,7 @@ describe('dashboard.totalSeminarsJoined', () => {
 
     test('Successfully get data', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { user_id: 1},
         };
         const res = createRes();
@@ -190,7 +193,7 @@ describe('dashboard.totalSeminarsJoined', () => {
 describe('dashboard.latestSeminar', () => {
 
     test('Missing user id error', async () => {
-        const req = { params: { id: 1 }};
+        const req = { params: { id: 1 }, user: { id: 1, username: "admin", role: "admins"}};
         const res = createRes();
 
         await latestSeminar(req, res);
@@ -204,6 +207,7 @@ describe('dashboard.latestSeminar', () => {
     
     test('Catch fetch error', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { user_id: 1},
         };
         const res = createRes();
@@ -222,6 +226,7 @@ describe('dashboard.latestSeminar', () => {
 
     test('Successfully get data', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { user_id: 1},
         };
         const res = createRes();

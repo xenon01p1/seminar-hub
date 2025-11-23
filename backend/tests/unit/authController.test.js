@@ -55,6 +55,23 @@ describe('authController.login', () => {
     }));
   });
 
+  test('Return error if user is deleted', async() => {
+    const req = { body: { username: 'alice', password: 'wrong', role: 'users', is_deleted: 1 } };
+    const res = createRes();
+
+    const fakeUser = [{ id: 1, username: 'alice', password: 'hashed', email: 'a@b.c', is_deleted: 1  }];
+    db.query.mockImplementationOnce((sql, params, cb) => cb(null, fakeUser));
+
+    await login(req, res);
+
+    expect(db.query).toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
+      status: false,
+      message: "User not found.",
+    }));
+  });
+
   test('wrong password returns 401', async () => {
     const req = { body: { username: 'alice', password: 'wrong', role: 'users' } };
     const res = createRes();

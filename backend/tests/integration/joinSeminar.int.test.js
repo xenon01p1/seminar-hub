@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../../index.js";
+import app from "../../app.js";
 import { describe, test, beforeEach, expect } from "@jest/globals";
 import { db } from "../../connect.js";
 import bcrypt from "bcrypt";

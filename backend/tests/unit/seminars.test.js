@@ -46,7 +46,7 @@ afterAll(() => {
 
 describe('seminars.getSeminars', () => {
     test('Fetch data error', async() => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const mockError = new Error('Fake error');
 
@@ -62,7 +62,7 @@ describe('seminars.getSeminars', () => {
     });
 
     test('Successfully fetch data', async() => {
-        const req = {};
+        const req = { user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         
         db.query.mockResolvedValueOnce({});
@@ -80,7 +80,7 @@ describe('seminars.getSeminars', () => {
 
 describe('seminars.getSeminarsJoinJoinedSeminars', () => {
     test("Missing user_id error", async() => {
-        const req = {params: {}};
+        const req = {params: {}, user: { id: 1, username: "admin", role: "admins"}};
         const res = createRes();
 
         db.query.mockResolvedValueOnce({});
@@ -95,7 +95,7 @@ describe('seminars.getSeminarsJoinJoinedSeminars', () => {
     });
 
     test('Fetch data error', async() => {
-        const req = { params: { user_id: 1 } };
+        const req = { params: { user_id: 1 }, user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         const mockError = new Error('Fake error');
 
@@ -113,7 +113,7 @@ describe('seminars.getSeminarsJoinJoinedSeminars', () => {
     });
 
     test('Successfully fetch data', async() => {
-        const req = { params: { user_id: 1 } };
+        const req = { params: { user_id: 1 }, user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
         
         db.query.mockResolvedValueOnce({});
@@ -132,6 +132,7 @@ describe('seminars.getSeminarsJoinJoinedSeminars', () => {
 describe('seminars.addSeminar', () => {
     test('Missing file upload error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             file: null,
             body: {
                 title: "CS50 Introduction",
@@ -157,6 +158,7 @@ describe('seminars.addSeminar', () => {
 
     test('Missing required field error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             file: { path: "/tmp/test.jpg" },
             body: {
                 description: "Introduction to computer science",
@@ -181,6 +183,7 @@ describe('seminars.addSeminar', () => {
 
     test('Insert data error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             file: { path: "/tmp/test.jpg" },
             body: {
                 title: "CS50 Introduction",
@@ -207,6 +210,7 @@ describe('seminars.addSeminar', () => {
 
     test('Successfully insert data', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             file: { path: "/tmp/test.jpg" },
             body: {
                 title: "CS50 Introduction",
@@ -234,6 +238,7 @@ describe('seminars.addSeminar', () => {
 describe('seminars.editSeminar', () => {
     test('Missing id field error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: null }, 
             file: null,
             body: {
@@ -260,6 +265,7 @@ describe('seminars.editSeminar', () => {
 
     test('No fields error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1 }, 
             file: null,
             body: {}
@@ -279,6 +285,7 @@ describe('seminars.editSeminar', () => {
 
     test('Edit data error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1 }, 
             file: { path: "/tmp/test.jpg" },
             body: {
@@ -306,6 +313,7 @@ describe('seminars.editSeminar', () => {
 
     test('Data not found error', async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1 },
             file: { path: "/tmp/test.jpg" },
             body: {
@@ -333,6 +341,7 @@ describe('seminars.editSeminar', () => {
 
     test('Successfully update data', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: 1 },
             file: { path: "/tmp/test.jpg" },
             body: {
@@ -361,6 +370,7 @@ describe('seminars.editSeminar', () => {
 describe('seminars.deleteSeminar', () => {
     test('Missing id error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { id: null }
         };
         const res = createRes();
@@ -377,7 +387,7 @@ describe('seminars.deleteSeminar', () => {
     });
 
     test("Db delete error", async () => {
-        const req = { params: { id: 1 } };
+        const req = { params: { id: 1 }, user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         const mockError = new Error("awai is not defined");
@@ -406,7 +416,7 @@ describe('seminars.deleteSeminar', () => {
     });
 
     test('Successfully delete data', async() => {
-        const req = { params: { id: 1 } };
+        const req = { params: { id: 1 }, user: { id: 1, username: "admin", role: "admins"} };
         const res = createRes();
 
         // Fake connection object
@@ -435,6 +445,7 @@ describe('seminars.deleteSeminar', () => {
 describe('seminars.joinSeminar', () => {
     test('Missing seminar id error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { seminarId: null }
         };
         const res = createRes();
@@ -452,6 +463,7 @@ describe('seminars.joinSeminar', () => {
 
     test("Duplicate entry error", async () => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { seminarId: 1 },
             user: { id: 1 }
         };
@@ -474,6 +486,7 @@ describe('seminars.joinSeminar', () => {
 
     test('Join seminar db error', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { seminarId: 1 },
             user: { id: 1 }
         };
@@ -493,6 +506,7 @@ describe('seminars.joinSeminar', () => {
 
     test('Successfully join seminar', async() => {
         const req = {
+            user: { id: 1, username: "admin", role: "admins"},
             params: { seminarId: 1 },
             user: { id: 1 }
         };

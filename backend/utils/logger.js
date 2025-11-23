@@ -5,6 +5,7 @@ import path from "path";
 const logDir = path.join(process.cwd(), "logs");
 
 export const logger = winston.createLogger({
+    level: process.env.NODE_ENV === "test" ? "silent" : "info",
     format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.json()
