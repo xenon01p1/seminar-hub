@@ -97,7 +97,7 @@ export const editUser = (req, res) => {
     const allowedFields = ['username', 'password', 'email', 'is_deleted'];
     let updateData = { };
     for (const field of allowedFields) {
-        if (req.body[field] !== undefined && req.body[field].length > 0) {
+        if (req.body[field] !== undefined && req.body[field] !== "") {
             updateData[field] = req.body[field];
         }
     }

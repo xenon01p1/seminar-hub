@@ -83,20 +83,20 @@ export const registerUser = (req, res) => {
     }
     if (data.length) return res.status(409).json({ status: false, message: "User already exists." });
 
-    const userData = data[0];
     const salt = bcrypt.genSaltSync(10);
     const hashedPass = bcrypt.hashSync(password, salt);
 
-    const insertUser = "INSERT INTO users (`username`, `password`, `email`, `created_at`) VALUES (?)";
+    const insertUser = "INSERT INTO users (`username`, `password`, `email`, `created_at`, `is_deleted`) VALUES (?)";
     const values = 
     [
       username,
       hashedPass,
       email,
       moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+      0
     ];
 
-    db.query(insertUser, [values], (err) => {
+    db.query(insertUser, [values], (err, data) => {
       if (err) {
         if (process.env.NODE_ENV !== "test") {
           logger.error(`Error DB register: ${ err.sqlMessage }`);
@@ -106,7 +106,7 @@ export const registerUser = (req, res) => {
       }
 
       if (process.env.NODE_ENV !== "test") {
-        logger.info(`[${ userData.id } - users: ${ username } ] = is registered`);
+        logger.info(`[${ data.id } - users: ${ username } ] = is registered`);
       };
 
       return res.status(200).json({ status: true, message: "User has been successfully registered!" });

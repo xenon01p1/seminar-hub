@@ -36,15 +36,17 @@ export const addUser = async (data) => {
     }
 }
 
-export const editUser = async (id, data) => {
+export const editUser = async (id, userData) => {
+    console.log("id :", id);
+    console.log("data :", userData);
     try{
-        const { data: response } = await makeRequest.patch(`/admin/users/${ id }`, data);
+        const { data: response } = await makeRequest.patch(`/admin/users/${ id }`, userData);
         return response;
     } catch (error) {
-        if (err.response) {
-            throw new Error(err.response.data.message || "Failed to fetch users.");
+        if (error.response) {
+            throw new Error(error.response.data.message || "Failed to fetch users.");
         }
-        throw err;
+        throw error;
     }
 }
 

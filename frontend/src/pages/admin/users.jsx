@@ -93,7 +93,7 @@ export default function Users () {
       }).then((result) => {
           if (result.isConfirmed) {
               
-              editUserMutate({ id: userData.id, data: { id: userData.id, is_deleted: 1 } }, {
+              editUserMutate({ id: userData.id, userData: { is_deleted: 1 } }, {
                   onSuccess: () => {
                       MySwal.fire({
                           title: "Deleted!",
@@ -107,6 +107,7 @@ export default function Users () {
                           text: error.response?.data?.message || error.message || "An unknown error occurred.", 
                           icon: "error"
                       });
+                      console.log(error);
                   }
               });
           }

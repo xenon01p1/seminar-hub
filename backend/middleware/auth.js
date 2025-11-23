@@ -19,7 +19,9 @@ export const verifyToken = (req, res, next) => {
     const usernameOfLoggedUser = req.user.username;
     const role = req.user.role;
 
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Token verified`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Token verified`);
+    };
 
     next();
 
@@ -35,7 +37,10 @@ export const isAdmin = (req, res, next) => {
   const role = req.user.role;
 
   if (req.user.role !== "admins") {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Access denied: Admins only`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Access denied: Admins only`);
+    };
+
     return res.status(403).json({ status: false, message: "Access denied: Admins only" });
   }
   next();
@@ -47,7 +52,10 @@ export const isUser = (req, res, next) => {
   const role = req.user.role;
 
   if (req.user.role !== "users") {
-    logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Access denied: Users only`);
+    if (process.env.NODE_ENV !== "test") {
+      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Access denied: Users only`);
+    };
+
     return res.status(403).json({ status: false, message: "Access denied: Users only" });
   }
   next();
