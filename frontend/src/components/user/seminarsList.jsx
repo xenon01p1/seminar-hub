@@ -1,5 +1,5 @@
 import { useGetSeminarsLimit, useGetSeminarsJoined } from "../../hooks/useSeminars";
-import { useJoinSeminar } from "../../hooks/useSeminarsJoined";
+import { useJoinSeminar } from "../../hooks/useSeminarsJoined.js";
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import moment from "moment";
@@ -36,6 +36,13 @@ export default function SeminarsList({ primary_color, primary_dark }) {
         { enabled: isAuthChecked && isUser } 
     );
 
+    const {
+        mutate: joinSeminarMutate,
+        isLoading: joinSeminarLoading,
+        isError: joinSeminarError,
+        isSuccess: joinSeminarSuccess,
+        error: joinSeminarErrorObject
+    } = useJoinSeminar();
     
     console.log('dumbass role: ', currentUser);
 

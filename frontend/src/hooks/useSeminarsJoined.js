@@ -26,6 +26,9 @@ export const useJoinSeminar = () => {
 
   return useMutation({
     mutationFn: ({ id }) => joinSeminar(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['getLatestSeminars', 'getTotalJoinedSeminars'] })
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['getLatestSeminars'] });
+      queryClient.invalidateQueries({ queryKey: ['getSeminarsJoined'] });
+    }
   })
 }
