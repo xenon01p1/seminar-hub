@@ -34,8 +34,12 @@ import { logger } from "../utils/logger.js";
 
 export const getSeminars = async (req, res) => {
   try {
-    const data = await db.query("SELECT * FROM seminars");
+    const data = await db.query(`
+        SELECT * 
+        FROM seminars
+    `);
     return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
+
   } catch (err) {
     return res.status(500).json({ status: false, message: err.sqlMessage });
   }
@@ -69,12 +73,14 @@ export const getSeminarsJoinJoinedSeminars = async (req, res) => {
       LEFT JOIN 
         joined_users ju 
         ON s.id = ju.seminar_id AND ju.user_id = ?
+      WHERE 
+        DATE(s.created_at) >= CURDATE()
     `;
 
     const data = await db.query(query, [user_id]);
 
     if (process.env.NODE_ENV !== "test") {
-      logger.info(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = fetched all seminars join joined data`);
+      logger.info(`[${userId} - ${role}: ${usernameOfLoggedUser}] = fetched all seminars join joined data`);
     }
 
     return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
@@ -83,13 +89,14 @@ export const getSeminarsJoinJoinedSeminars = async (req, res) => {
     const errorMessage = error.sqlMessage;
 
     if (process.env.NODE_ENV !== "test") {
-      logger.error(`[${ userId } - ${ role }: ${ usernameOfLoggedUser } ] = Error fetching all seminars join joined data`);
-      logger.error(`Error details: ${ errorMessage }`);
+      logger.error(`[${userId} - ${role}: ${usernameOfLoggedUser}] = Error fetching all seminars join joined data`);
+      logger.error(`Error details: ${errorMessage}`);
     }
 
     return res.status(500).json({ status: false, message: errorMessage });
   }
-}
+};
+
 
 
 export const addSeminar = async (req, res) => {

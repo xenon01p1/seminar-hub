@@ -143,15 +143,20 @@ export const editAdmin = (req, res) => {
 export const deleteAdmin = (req, res) => {
     const { id } = req.params;
     let userId, usernameOfLoggedUser, role;
+    userId = req.user.id;
 
     if (process.env.NODE_ENV !== "test") {
-        userId = req.user.id;
         usernameOfLoggedUser = req.user.username;
         role = req.user.role;
     }
 
     if (!id || id.length === 0) {
         return res.status(400).json({ status: false, message: `id field is required` });
+    }
+
+    // logged admin can't delete itself
+    if (id == userId){
+        return res.status(400).json({ status: false, message: `Cannot delete logged admin` });
     }
 
     const deleteAdminQuery = "DELETE FROM admins WHERE id = ?";

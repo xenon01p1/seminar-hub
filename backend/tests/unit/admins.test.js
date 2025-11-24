@@ -268,3 +268,60 @@ describe('admins.editAdmin', () => {
         })
     });
 });
+
+describe('admins.deleteAdmin', () => {
+    test('Missing ID Field required error', async() => {
+        const req = {
+            user: {id: 1, username: "admin", role: "admins"},
+            params: {}
+        };
+        const res = createRes();
+
+        await deleteAdmin(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith({ status: false, message: `id field is required` });
+    });
+
+    test("Logged admin can't delete itself error", async() => {
+        const req = {
+            user: {id: 1, username: "admin", role: "admins"},
+            params: {id: 1}
+        };
+        const res = createRes();
+
+        await deleteAdmin(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(400);
+        expect(res.json).toHaveBeenCalledWith({ status: false, message: `Cannot delete logged admin` });
+    });
+
+    test("Delete data DB error", async() => {
+        const req = {
+            user: {id: 1, username: "admin", role: "admins"},
+            params: {id: 2}
+        };
+        const res = createRes();
+        const mockError = new Error('db error');
+
+        db.query.mockImplementationOnce((sql, params, cb) => cb(mockError, null));
+        await deleteAdmin(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(500);
+        expect(res.json).toHaveBeenCalledWith({ status: false, message: mockError.sqlMessage });
+    });
+
+    test('Successfully delete admin', async() => {
+        const req = {
+            user: {id: 1, username: "admin", role: "admins"},
+            params: {id: 2}
+        };
+        const res = createRes();
+
+        db.query.mockImplementationOnce((sql, params, cb) => cb(null, []));
+        await deleteAdmin(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(200);
+        expect(res.json).toHaveBeenCalledWith({ status: true, message: "Data has been deleted!" });
+    })
+});

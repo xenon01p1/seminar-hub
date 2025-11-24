@@ -62,10 +62,6 @@ export default function SeminarsList({ primary_color, primary_dark }) {
         };
     }, [isUser, joinedData, limitData, isLoadingJoined, isLoadingLimit, errorJoined, errorLimit]);
 
-    // const data = isUser ? joinedData : limitData;
-    // const isLoading = isUser ? isLoadingJoined : isLoadingLimit;
-    // const error = isUser ? errorJoined : errorLimit;
-
     console.log(data);
 
     const handleJoinSeminar = (id) => {

@@ -41,9 +41,9 @@ export const deleteAdmin = async (id) => {
         const { data: response } = await makeRequest.delete(`/admin/admins/${ id }`);
         return response;
     } catch (error) {
-        if (err.response) {
-            throw new Error(err.response.data.message || "Failed to fetch admins.");
+        if (error.response) {
+            throw new Error(error.response.data.message || "Failed to fetch admins.");
         }
-        throw err;
+        throw error;
     }
 }

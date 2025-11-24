@@ -1,0 +1,109 @@
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:08:38.197Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:08:38.221Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Logged in","timestamp":"2025-11-24T16:11:11.453Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:11:11.583Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:11:11.594Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:11:31.791Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:11:31.825Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:11:36.314Z"}
+{"level":"info","message":"[1 - admins: test1 ] = successfully deleted admin","timestamp":"2025-11-24T16:11:36.377Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:11:36.566Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:11:36.610Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:11:51.711Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:11:51.717Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:12:05.120Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:12:05.131Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:12:08.869Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:12:08.875Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:12:11.827Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched all users data","timestamp":"2025-11-24T16:12:11.835Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:19:33.242Z"}
+{"level":"info","message":"[1 - admins: test1 ] = fetched all users data","timestamp":"2025-11-24T16:19:33.248Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:19:34.105Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:19:34.108Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:24:48.150Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:24:48.251Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:27:04.142Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:27:04.192Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:27:06.414Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:27:06.449Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Logged in","timestamp":"2025-11-24T16:27:10.939Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:27:11.038Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:27:11.046Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:27:14.086Z"}
+{"level":"info","message":"[1 - admins: test1 ] = successfully deleted admin","timestamp":"2025-11-24T16:27:14.162Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:27:14.180Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Successfully get admins data","timestamp":"2025-11-24T16:27:14.192Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:27:37.635Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:27:37.657Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:27:45.637Z"}
+{"level":"info","message":"[1 - admins: test1 ] = Token verified","timestamp":"2025-11-24T16:27:45.710Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Logged in","timestamp":"2025-11-24T16:27:58.750Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:27:58.974Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T16:27:59.073Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:03.868Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:34.963Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T16:28:35.063Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:37.898Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:37.927Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Logged in","timestamp":"2025-11-24T16:28:45.226Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:45.314Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T16:28:45.320Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T16:28:48.163Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T16:38:42.657Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T16:38:42.674Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:03:44.445Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:03:44.466Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:03:51.030Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:03:51.131Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:03:56.622Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:03:56.671Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:03:59.466Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:03:59.511Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:04:12.534Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:04:12.585Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Logged in","timestamp":"2025-11-24T17:04:18.015Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:04:18.128Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:04:18.147Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:05:49.204Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:05:49.225Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:05:51.408Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:05:51.462Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:05:53.043Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:05:53.131Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:07:09.948Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:07:09.966Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:07:11.147Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:07:11.191Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:07:12.182Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:07:12.273Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:07:13.306Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:07:13.315Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:07:15.508Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:07:15.514Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:07:41.807Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:07:41.824Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:09:39.395Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:09:39.434Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:09:42.349Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:09:42.478Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:09:50.515Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:09:50.567Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:11:45.169Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:11:45.199Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:11:45.299Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:11:45.378Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:11:53.155Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:11:53.214Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:12:14.551Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:12:14.578Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:12:16.627Z"}
+{"level":"info","message":"[3 - admins: test2 ] = fetched all users data","timestamp":"2025-11-24T17:12:16.713Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:13:20.133Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:13:20.162Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:13:22.253Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:13:22.339Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T17:22:10.965Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:22:10.996Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:23:30.828Z"}
+{"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:23:30.980Z"}
