@@ -2,7 +2,7 @@ import express from "express";
 import { upload } from '../middleware/upload.js';
 import { getUsers, addUser, editUser } from "../controllers/users.js";
 import { getAdmins, addAdmin, editAdmin, deleteAdmin } from "../controllers/admins.js";
-import { getSeminars, addSeminar, editSeminar, deleteSeminar } from "../controllers/seminars.js";
+import { getSeminarsForAdmin, addSeminar, editSeminar, deleteSeminar } from "../controllers/seminars.js";
 import { totalSeminars, totalUsers, totalAttendees } from "../controllers/dashboard.js";
 import { verifyToken, isAdmin } from "../middleware/auth.js";
 
@@ -26,7 +26,7 @@ router.patch("/admins/:id", verifyToken, isAdmin, editAdmin);
 router.delete("/admins/:id", verifyToken, isAdmin, deleteAdmin);
 
 // CRUD seminars TABLE
-router.get("/seminars", getSeminars);
+router.get("/seminars", getSeminarsForAdmin);
 router.post("/seminars", verifyToken, isAdmin, upload.single('img'), addSeminar);
 router.patch("/seminars/:id", verifyToken, isAdmin, upload.single('img'), editSeminar);
 router.delete("/seminars/:id", verifyToken, isAdmin, deleteSeminar);

@@ -34,9 +34,26 @@ export default function App() {
                     <Route path="/" element={<InterceptorSetup />}>
                         
                         {/* Note: This path is now relative to the parent path: /user/profile */}
-                        <Route path="user/profile" element={<UserProfile />} />
+                        <Route 
+                        path="user/profile" 
+                        element={
+                            <PrivateRoute allowedRole="users">
+                            <UserProfile />
+                            </PrivateRoute>
+                        }
+                        />
 
-                        <Route path="admin/dashboard" element={<Dashboard />} />
+                        {/* <Route path="user/profile" element={<UserProfile />} /> */}
+
+                        <Route 
+                            path="admin/dashboard" 
+                            element={
+                                <PrivateRoute allowedRole="admins">
+                                <Dashboard />
+                                </PrivateRoute>
+                            }
+                        />
+
 
                         {/* Admin-only layout */}
                         <Route

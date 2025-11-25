@@ -4,7 +4,7 @@ import TidyTable from "../../components/table.jsx";
 import ConTitle from "../../components/conTitle.jsx";
 import FormModal from "../../components/formModal.jsx";
 import RangedPagination from "../../components/rangedPagination.jsx";
-import { useGetSeminars, useAddSeminar, useEditSeminar, useDeleteSeminar } from "../../hooks/useSeminars.js";
+import { useGetSeminarsForAdmin, useAddSeminar, useEditSeminar, useDeleteSeminar } from "../../hooks/useSeminars.js";
 import FormInput from "../../components/formInput.jsx";
 import Swal from 'sweetalert2';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -25,7 +25,7 @@ export default function Seminars () {
   const [sorting, setSorting] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [modalShow, setModalShow] = useState(false);
-  const { isLoading, error, data } = useGetSeminars();
+  const { isLoading, error, data } = useGetSeminarsForAdmin();
   const [editingSeminar, setEditingSeminar] = useState(null); 
   
   // 💡 PAGINATION STATE (Set pageSize to 2 for easy testing)

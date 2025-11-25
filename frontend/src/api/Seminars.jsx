@@ -2,11 +2,24 @@ import { makeRequest, publicRequest } from "../axios";
 
 export const getSeminars = async() => {
     try {
-        const { data } = await publicRequest.get('/admin/seminars/');
+        const { data } = await publicRequest.get('/user/seminars/');
         return data.data;
     } catch (err) { 
         if (err.response) {
         throw new Error(err.response.data.message || "Failed to fetch Data.");
+        }
+        throw err;
+    }
+}
+
+export const getSeminarsForAdmin = async() => {
+    try {
+        const { data } = await publicRequest.get('/admin/seminars/');
+        return data.data;
+    } catch (err) { 
+        if (err.response) {
+            console.log(err.response.data.message);
+            throw new Error(err.response.data.message || "Failed to fetch Data.");
         }
         throw err;
     }

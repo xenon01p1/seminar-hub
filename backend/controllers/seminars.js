@@ -37,6 +37,20 @@ export const getSeminars = async (req, res) => {
     const data = await db.query(`
         SELECT * 
         FROM seminars
+        WHERE DATE(created_at) >= CURDATE()
+    `);
+    return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
+
+  } catch (err) {
+    return res.status(500).json({ status: false, message: err.sqlMessage });
+  }
+};
+
+export const getSeminarsForAdmin = async (req, res) => {
+  try {
+    const data = await db.query(`
+        SELECT * 
+        FROM seminars
     `);
     return res.status(200).json({ status: true, message: "Retrieving data successful!", data });
 

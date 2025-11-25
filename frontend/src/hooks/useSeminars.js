@@ -1,10 +1,20 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { getSeminars, getSeminarsJoined, getTotalSeminars, addSeminar, editSeminar, deleteSeminar } from "../api/Seminars";
+import { getSeminars, getSeminarsForAdmin, getSeminarsJoined, getTotalSeminars, addSeminar, editSeminar, deleteSeminar } from "../api/Seminars";
 
 export const useGetSeminars = () => {
     const { isLoading, error, data } = useQuery({
         queryKey: ['getSeminars'],
         queryFn: getSeminars
+    });
+
+    return { isLoading, error, data };
+}
+
+export const useGetSeminarsForAdmin = (isUser) => {
+    const { isLoading, error, data } = useQuery({
+        queryKey: ['getSeminarsAdmin'],
+        queryFn: getSeminarsForAdmin,
+        enabled: isUser, 
     });
 
     return { isLoading, error, data };
