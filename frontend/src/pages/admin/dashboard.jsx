@@ -16,20 +16,15 @@ export default function Dashboard () {
                 
                 <div className="flex flex-col gap-6 mt-6"> 
 
-                    {/* NEW SECTION: Side-by-Side Layout (KPI Cards 20% | Chart 80%) */}
-                    {/* Use flex and flex-row for side-by-side alignment, and gap-6 for spacing */}
-                    <div className="flex flex-col lg:flex-row gap-6"> 
-
-                        {/* 1. KPI Cards (Stack vertically, fixed to 20% on large screens) */}
-                        <div className="flex flex-col gap-4 lg:w-1/5">
-                            <AdminKpi />
-                        </div>
-
-                        {/* 2. Primary Chart (Takes the remaining 80% width) */}
-                        <section className="bg-white rounded-xl shadow-md p-6 lg:p-8 lg:w-4/5">
-                            <AttendeesChart />
-                        </section>
+                    {/* 1. KPI Cards (Stack vertically, fixed to 20% on large screens) */}
+                    <div className="flex flex-row gap-4 w-full">
+                        <AdminKpi />
                     </div>
+
+                    {/* 2. Primary Chart (Takes the remaining 80% width) */}
+                    <section className="bg-white rounded-xl shadow-md p-6 lg:p-8 w-full">
+                        <AttendeesChart />
+                    </section>
                     
                     {/* 3. Secondary Charts (Two Columns - below the 20/80 split) */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

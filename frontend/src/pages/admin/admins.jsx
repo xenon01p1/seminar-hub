@@ -7,6 +7,7 @@ import RangedPagination from "../../components/rangedPagination.jsx";
 import FormInput from "../../components/formInput.jsx";
 import { useGetAdmins, useAddAdmin, useEditAdmin, useDeleteAdmin } from "../../hooks/useAdmins.js";
 import Swal from 'sweetalert2';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import withReactContent from 'sweetalert2-react-content';
 import {
   useReactTable,
@@ -289,7 +290,7 @@ export default function Admins () {
       </FormModal>
 
       <div className="flex justify-between items-center mb-2">
-        <ConTitle title="Admins 👥" />
+        <ConTitle title='Admins' icon="bi bi-person-vcard"/>
         <button
           onClick={handleAddClick} // 💡 Use the new handler
           className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150"

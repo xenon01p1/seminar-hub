@@ -7,6 +7,7 @@ import RangedPagination from "../../components/rangedPagination.jsx";
 import { useGetSeminars, useAddSeminar, useEditSeminar, useDeleteSeminar } from "../../hooks/useSeminars.js";
 import FormInput from "../../components/formInput.jsx";
 import Swal from 'sweetalert2';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import withReactContent from 'sweetalert2-react-content';
 import {
   useReactTable,
@@ -308,7 +309,7 @@ export default function Seminars () {
       </FormModal>
 
       <div className="flex justify-between items-center mb-4">
-        <ConTitle title="Seminars 💻" />
+        <ConTitle title='Seminars' icon="bi bi-person-video3"/>
         <button
           onClick={ handleAddClick }
           className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150"

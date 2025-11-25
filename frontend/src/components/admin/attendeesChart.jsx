@@ -51,12 +51,13 @@ export default function AttendeesChart() {
         ],
     };
     
-    return (
-        <div style={{ maxWidth: '800px', height: '500px', margin: '0 auto' }}> 
+    return ( 
+        <div className='mx-auto w-full'>
             <Chart 
                 chartType="Line"
                 options={options}
                 data={data}
+                className='mx-auto w-full'
             />
         </div>
     );

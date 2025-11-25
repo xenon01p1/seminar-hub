@@ -7,6 +7,7 @@ import FormModal from "../../components/formModal.jsx";
 import FormInput from "../../components/formInput.jsx";
 import { useGetUsers,useAddUser, useEditUser } from "../../hooks/useUsers.js";
 import Swal from 'sweetalert2';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import withReactContent from 'sweetalert2-react-content';
 import {
   useReactTable,
@@ -270,7 +271,7 @@ export default function Users () {
 
       </FormModal>
       <div className="flex justify-between items-center mb-4">
-        <ConTitle title="Users 👥" />
+        <ConTitle title='Users' icon="bi bi-people"/>
         <button
           onClick={() => handleAddClick(true)}
           className="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition duration-150"

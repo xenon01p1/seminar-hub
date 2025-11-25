@@ -107,3 +107,7 @@
 {"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T17:22:10.996Z"}
 {"level":"info","message":"[3 - admins: test2 ] = Token verified","timestamp":"2025-11-24T17:23:30.828Z"}
 {"level":"info","message":"[3 - admins: test2 ] = Successfully get admins data","timestamp":"2025-11-24T17:23:30.980Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-24T18:27:05.900Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-24T18:27:05.931Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2025-11-25T03:24:53.686Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2025-11-25T03:24:53.703Z"}
