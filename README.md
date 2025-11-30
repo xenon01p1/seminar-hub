@@ -7,12 +7,17 @@ This project represents my transition from older stacks (PHP/jQuery) into **indu
 
 ## 🖼️ Screenshots
 
-```
-./screenshots/user-dashboard.png
-./screenshots/user-landingPage.png
-./screenshots/admin-dashboard.png
-./screenshots/admin-landingPage.png
-```
+### User Dashboard
+![User Dashboard](./screenshots/user-dashboard.png)
+
+### User Landing Page
+![User Landing Page](./screenshots/user-landingPage.png)
+
+### Admin Dashboard
+![Admin Dashboard](./screenshots/admin-dashboard.png)
+
+### Admin Landing Page
+![Admin Landing Page](./screenshots/admin-landingPage.png)
 
 ## 🛠️ Tech Stack
 
@@ -41,31 +46,31 @@ This project represents my transition from older stacks (PHP/jQuery) into **indu
 ## ✨ Features
 
 ### **Backend (Express + MySQL)**
-- ✔️ Clean architecture (routes, controllers, services)
-- ✔️ JWT Authentication (Login, Register, Role-based: user/admin)
-- ✔️ User CRUD
-- ✔️ Admin CRUD
-- ✔️ Seminar CRUD (with image upload)
-- ✔️ Join Seminar API (many-to-many relation)
-- ✔️ Dashboard Statistics  
+- Clean architecture (routes, controllers, services)
+- JWT Authentication (Login, Register, Role-based: user/admin)
+- User CRUD
+- Admin CRUD
+- Seminar CRUD (with image upload)
+- Join Seminar API (many-to-many relation)
+- Dashboard Statistics  
   - Admin: total seminars, users, attendees  
   - User: seminars joined, latest seminar
-- ✔️ Swagger API documentation
-- ✔️ Unit tests + Integration tests
-- ✔️ Logging with Winston
+- Swagger API documentation
+- Unit tests + Integration tests
+- Logging with Winston
 
 ---
 
 ### **Frontend (React)**
-- ✔️ Login / Register
-- ✔️ Admin dashboard (stats)
-- ✔️ Admin: Manage seminars (CRUD + upload)
-- ✔️ Admin: Manage users
-- ✔️ Admin: Manage admins
-- ✔️ Admin profile + logout
-- ✔️ User dashboard (profile + stats)
-- ✔️ User: Browse seminars + join
-- ✔️ User: View joined seminars
+- Login / Register
+- Admin dashboard (stats)
+- Admin: Manage seminars (CRUD + upload)
+- Admin: Manage users
+- Admin: Manage admins
+- Admin profile + logout
+- User dashboard (profile + stats)
+- User: Browse seminars + join
+- User: View joined seminars
 
 ---
 
@@ -91,7 +96,7 @@ seminar-hub/
      │   ├── hooks/
      │   └── layouts/
      └── main.jsx
-
+```
 
 
 ## 🛠️ Running Locally
