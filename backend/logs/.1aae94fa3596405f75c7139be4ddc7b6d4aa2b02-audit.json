@@ -24,6 +24,16 @@
             "date": 1764000396240,
             "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-24.log",
             "hash": "426c217bc39b03318b01ca252b9c7e06745ecf45afcc46d62ab96dec0db54a17"
+        },
+        {
+            "date": 1764166703517,
+            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-26.log",
+            "hash": "9bc809d3cbce52d57f010a661d649a1c819f4851a4e2deca867b1b9155502aab"
+        },
+        {
+            "date": 1764507064908,
+            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-30.log",
+            "hash": "13019b9a3d95d44290c81c8c700f58c5637fd27a345c3a5e67cfacae6ecd5047"
         }
     ],
     "hashType": "sha256"
