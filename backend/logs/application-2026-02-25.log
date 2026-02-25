@@ -1,0 +1,32 @@
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:26:33.586Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:26:33.600Z"}
+{"level":"error","message":"Registration Error: db.queryAsync is not a function","timestamp":"2026-02-25T14:27:09.521Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:30:03.062Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:30:03.072Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:37:03.541Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:37:03.561Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:37:37.623Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:37:37.647Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:38:29.353Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:38:29.371Z"}
+{"level":"info","message":"[12 - users: test5] = Logged in","timestamp":"2026-02-25T14:39:04.261Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:39:28.135Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:39:28.145Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:42:56.649Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:42:56.659Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:45:17.973Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:45:17.995Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:47:51.104Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:47:51.130Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:50:53.596Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:50:53.605Z"}
+{"level":"info","message":"[12 - users: test5] = Logged in","timestamp":"2026-02-25T14:52:55.591Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:56:35.042Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:56:35.056Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T14:56:56.995Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T14:56:57.008Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T15:01:53.222Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T15:01:53.310Z"}
+{"level":"info","message":"Starting Seminar Hub server...","timestamp":"2026-02-25T15:02:04.061Z"}
+{"level":"info","message":"Server running on http://localhost:3000","timestamp":"2026-02-25T15:02:04.076Z"}
+{"level":"info","message":"[12 - users: test5] = Logged in","timestamp":"2026-02-25T15:14:38.901Z"}

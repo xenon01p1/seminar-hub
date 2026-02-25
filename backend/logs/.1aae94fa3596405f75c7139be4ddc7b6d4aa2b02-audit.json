@@ -6,34 +6,9 @@
     "auditLog": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\.1aae94fa3596405f75c7139be4ddc7b6d4aa2b02-audit.json",
     "files": [
         {
-            "date": 1763629375439,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-20.log",
-            "hash": "f542a9071e4af6f88257878c274c1118381670401e46cbfc1cbdb21dd68b0808"
-        },
-        {
-            "date": 1763712222599,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-21.log",
-            "hash": "5c591556e8a20d4ee1d6450d58f5ab16814ee839a96b19f8e2a2b9b95dcb5e32"
-        },
-        {
-            "date": 1763906437587,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-23.log",
-            "hash": "4b0d1aff8c00b6653c468820f0fe25bce5c2fe4d35d1134047130fd36356d26a"
-        },
-        {
-            "date": 1764000396240,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-24.log",
-            "hash": "426c217bc39b03318b01ca252b9c7e06745ecf45afcc46d62ab96dec0db54a17"
-        },
-        {
-            "date": 1764166703517,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-26.log",
-            "hash": "9bc809d3cbce52d57f010a661d649a1c819f4851a4e2deca867b1b9155502aab"
-        },
-        {
-            "date": 1764507064908,
-            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2025-11-30.log",
-            "hash": "13019b9a3d95d44290c81c8c700f58c5637fd27a345c3a5e67cfacae6ecd5047"
+            "date": 1772029547054,
+            "name": "D:\\Apps\\laragon\\www\\react_tutorial\\seminar_hub\\backend\\logs\\application-2026-02-25.log",
+            "hash": "35fc28cf7632776b5a4f6b19d8f85a2d8f2071b02a7229a70970a64fc6e31016"
         }
     ],
     "hashType": "sha256"

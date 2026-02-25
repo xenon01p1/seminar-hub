@@ -1,5 +1,6 @@
 import express from "express";
 import { verifyToken } from "../middleware/auth.js";
+import { refreshToken } from "../controllers/authController.js";
 
 const router = express.Router();
 
@@ -11,5 +12,7 @@ router.get("/verify", verifyToken, (req, res) => {
     user: req.user
   });
 });
+
+router.post("/refresh_token", refreshToken);
 
 export default router;
